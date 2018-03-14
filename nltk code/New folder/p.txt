@@ -13,6 +13,7 @@ B
 bad
 banal
 barbed
+bb
 belligerent
 bemoan
 beneath
