@@ -1,0 +1,16 @@
+all words:
+https://github.com/dwyl/english-words
+
+positive words:
+https://gist.github.com/mkulakowski2/4289437
+
+negative words:
+https://gist.github.com/mkulakowski2/4289441
+
+stop words:
+https://github.com/stopwords-iso/stopwords-en/blob/master/stopwords-en.txt
+
+
+
+/lenovo-k8-note-venom-black-64-gb/product-reviews/itmfffjqd3v8mgts?page=2&pid=MOBFY635GPZNCZY8
+/lenovo-k8-note-venom-black-64-gb/product-reviews/itmfffjqd3v8mgts?page=3&pid=MOBFY635GPZNCZY8
