@@ -185,7 +185,7 @@ $(document).ready(function(){
 
 <div class="jumbotron text-center">
   <h1>Sentiment Analyzer</h1> 
-  <p>We specialize in analysing sentiments</p> 
+  <h3> We Know And We Care...!!</h3>
   <form class="form-inline" action="resultpage.php" method="post">
     <div class="input-group">
       <input type="" class="form-control" size="50" name="rsearchbar" placeholder="Product Search" required>
@@ -208,9 +208,6 @@ $(document).ready(function(){
      </tr>
    </table>
   </div>  
-
-
-
 
 </body>
 </html>
