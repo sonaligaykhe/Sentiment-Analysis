@@ -317,8 +317,8 @@ $("#srchbtn").click(function(){
 
 <div class="jumbotron text-center">
   <h1>Sentiment Analyzer</h1>  
-  <!-- <h3> We Know And We Care...!!</h3> 
-   --> <form action="resultpage.php" method="post">
+  <h3> We Know And We Care...!!</h3> 
+   <form class="form-inline" action="resultpage.php" method="post">
     <div class="input-group">
     <input class="form-control" size="50" id="srch" placeholder="Search Product" name="searchbar">
       <div class="input-group-btn">

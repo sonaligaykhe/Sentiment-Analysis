@@ -114,7 +114,7 @@ $(document).ready(function(){
 
       
      
-            google.charts.load('current', {'packages':['corechart']});
+      google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
@@ -173,8 +173,32 @@ $(document).ready(function(){
       background-color: black;
       color: #fff;
   }
+
+  #productimg{
+    float: left;
+    width: 40%;
+    height: 500px;  
+  }
+
+  #productinfo
+  {
+  width: 20%;
+  height: 500px;
+  }
+
+  #graph{
+    float: right;
+    width: 40%;
+    height: 500px;
+  }
+
+  #review{
+    padding-left: 15%;
+    padding-right: 15%;
+    background-color:   #f2f2f2;
+  }
+
   </style>
-  
 
         
 
@@ -193,21 +217,44 @@ $(document).ready(function(){
         <button type="submit" class="btn btn-danger" id="srchbtn" >Search</button>
       </div>
     </div>
-  </foraction="resultpage.php" method="post"m>
+  </form action="resultpage.php" method="post">
 </div> 
 
 
-    <div class="col-sm-7 slideanim" id="product">
-   <table>
-     <tr>
-       <th><img id="product_img" width="400" height="400"></th>
-       <th> <div> <p id="product_info"> </p></div></th>
-       <th> <div id="piechart"> </div></th>
-       <th> <div id="bargraph"> </div></th>
-       
-     </tr>
-   </table>
-  </div>  
+    <div class="container-fluid" id="product">
+   
+      <div  id="productimg" class="col-sm-3">
+        <img id="product_img" height="450" width="450" >
+      </div>     
+
+        <div  id="productinfo" class="col-sm-3 . well" > <p id="product_info"> </p></div>
+         
+         <div  id="graph" class="col-sm-3">
+            <div class="well" id="piechart"> </div>
+            <div id="bargraph" class="well"> </div>
+       </div>
+   
+  </div> 
+
+    <form action="resultpage.php" method="post"> 
+    <div class="" id="review">
+      <h3 align="center"> Add Reviews:</h3>
+      <div class="row" id="name">
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group" >
+          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        </div>
+      </div >
+      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <button class="btn btn-default pull-right" type="submit">Send</button>
+        </div>
+      </div>
+    </div>
+   </form> 
 
 </body>
 </html>
