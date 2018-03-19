@@ -114,7 +114,76 @@
 
 
             mysqli_close($conn);
-                         
+            
+
+//////////////////flipkart///////////////////////
+
+            $conn_f1 = mysqli_connect("localhost", "root", "", "project");
+//           $sql2 = "select * from '$tname' where name = '$inp'";
+
+            $sql_f1_1="select * from allproduct where productname='$compare1' and tablename like '%f' ";
+           
+            $sql_f1_2="select * from allproduct where productname='$compare2' and tablename like '%f' ";
+
+            $result1=mysqli_query($conn_f1,$sql_f1_1);
+          
+            $result2=mysqli_query($conn_f1,$sql_f1_2);
+            
+            $row=mysqli_fetch_assoc($result1);
+          
+            $tname_flip_1= $row['tablename'];
+
+
+            $row=mysqli_fetch_assoc($result2);
+          
+            $tname_flip_2= $row['tablename'];
+
+           $sql_f2_1="select * from `".$tname_flip_1."` where `name`='$compare1'";
+
+           $sql_f2_2="select * from `".$tname_flip_2."` where `name`='$compare2'";
+
+
+            $result1=mysqli_query($conn2,$sql_f2_1);
+
+            $result2=mysqli_query($conn2,$sql_f2_2);
+
+
+            if ($result == TRUE) {
+            echo "success f2";
+            } 
+            else {
+            echo "Error: " . $sql2 . "<br>" . $conn_f2->error;
+            }
+
+            $row=mysqli_fetch_assoc($result1);
+
+            $price_flip_1 = $row['price'];
+            $rating_flip_1 = $row['rating'];
+            $link_flip_1 = $row['link'];
+            $pos_flip_1 = $row['pos'];
+            $neg_flip_1 = $row['neg'];
+            $mix_flip_1 = $row['mix'];
+            $feature1val_flip_1= $row[$feature1]; 
+            $feature2val_flip_1= $row[$feature2]; 
+            $feature3val_flip_1=$row[$feature3]; 
+            $feature4val_flip_1= $row[$feature4]; 
+            $feature5val_flip_1= $row[$feature5]; 
+
+ $row=mysqli_fetch_assoc($result2);
+
+            $price_flip_2 = $row['price'];
+            $rating_flip_2 = $row['rating'];
+            $link_flip_2 = $row['link'];
+            $pos_flip_2 = $row['pos'];
+            $neg_flip_2 = $row['neg'];
+            $mix_flip_2 = $row['mix'];
+            $feature1val_flip_2= $row[$feature1]; 
+            $feature2val_flip_2= $row[$feature2]; 
+            $feature3val_flip_2= $row[$feature3]; 
+            $feature4val_flip_2= $row[$feature4]; 
+            $feature5val_flip_2= $row[$feature5]; 
+
+
         ?>
 
 
@@ -139,17 +208,123 @@ $(document).ready(function(){
         
             var cmp1 = '<?php echo $compare1;?>';
             var cmp2 = '<?php echo $compare2;?>';
+           
             var name1 = '<?php echo $name1;?>';
-            var pos1 = parseInt('<?php echo $pos_amz_1;?>');
-            var neg1 = parseInt('<?php echo $neg_amz_1;?>');
-            var mix1 = parseInt('<?php echo $mix_amz_1;?>');
+           
+            var pos1_amz = parseInt('<?php echo $pos_amz_1;?>');
+            var neg1_amz = parseInt('<?php echo $neg_amz_1;?>');
+            var mix1_amz = parseInt('<?php echo $mix_amz_1;?>');
+           
             var name2 = '<?php echo $name2;?>';
-            var pos2 = parseInt('<?php echo $pos_amz_2;?>');
-            var neg2 = parseInt('<?php echo $neg_amz_2;?>');
-            var mix2 = parseInt('<?php echo $mix_amz_2;?>');
+           
+            var pos2_amz = parseInt('<?php echo $pos_amz_2;?>');
+            var neg2_amz = parseInt('<?php echo $neg_amz_2;?>');
+            var mix2_amz = parseInt('<?php echo $mix_amz_2;?>');
+           
+            var feature_name1_1 = '<?php echo $feature1_1;?>';
+            var feature_name1_2= '<?php echo $feature2_1;?>';
+            var feature_name1_3 = '<?php echo $feature3_1;?>';
+            var feature_name1_4= '<?php echo $feature4_1;?>';
+            var feature_name1_5 = '<?php echo $feature5_1;?>';
+           
+            var feature_name2_1= '<?php echo $feature1_2;?>';
+            var feature_name2_2 = '<?php echo $feature2_2;?>';
+            var feature_name2_3= '<?php echo $feature3_2;?>';
+            var feature_name2_4 = '<?php echo $feature4_2;?>';
+            var feature_name2_5= '<?php echo $feature5_2;?>';
+           
+            var feature_name1_1_val_amz= '<?php echo $feature1val_amz_1;?>';          
+            var feature_name1_2_val_amz= '<?php echo $feature2val_amz_1;?>';          
+            var feature_name1_3_val_amz= '<?php echo $feature3val_amz_1;?>';          
+            var feature_name1_4_val_amz= '<?php echo $feature4val_amz_1;?>';          
+            var feature_name1_5_val_amz= '<?php echo $feature5val_amz_1;?>';          
+           
+            var feature_name2_1_val_amz= '<?php echo $feature1val_amz_2;?>';          
+            var feature_name2_2_val_amz= '<?php echo $feature2val_amz_2;?>';          
+            var feature_name2_3_val_amz= '<?php echo $feature3val_amz_2;?>';          
+            var feature_name2_4_val_amz= '<?php echo $feature4val_amz_2;?>';          
+            var feature_name2_5_val_amz= '<?php echo $feature5val_amz_2;?>';          
 
-console.log(cmp1);
-console.log(cmp2);
+            var link1_amz = '<?php echo $link_amz_1 ?>';
+            var link2_amz = '<?php echo $link_amz_2 ?>';
+
+           var price1_amz = '<?php echo $price_amz_1 ?>';  
+           var rating1_amz='<?php echo $rating_amz_1 ?> '; 
+           
+
+           var price2_amz = '<?php echo $price_amz_2 ?>';  
+           var rating2_amz='<?php echo $rating_amz_2 ?> ';  
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+          var price2_flip =   '<?php echo $price_flip_2 ?>';  
+          var rating2_flip = ' <?php echo $rating_flip_2 ?>';  //= $row['rating'];
+          var link2_flip=' <?php echo $link_flip_2 ?>';    //= $row['link'];
+          var pos2_flip=parseInt('<?php echo $pos_flip_2 ?>');   //= $row['pos'];
+          var neg2_flip= parseInt('<?php echo $neg_flip_2 ?>');  //= $row['neg'];
+          var mix2_flip = parseInt ('<?php echo $mix_flip_2 ?>');  //= $row['mix'];
+         var feature_name_2_1_val_flip ='<?php echo $feature1val_flip_2 ?>';  //= $row[$feature1]; 
+          var feature_name_2_2_val_flip ='<?php echo $feature2val_flip_2 ?>';  //= $row[$feature1]; 
+         var feature_name_2_3_val_flip ='<?php echo $feature3val_flip_2 ?>';  //= $row[$feature1]; 
+         var feature_name_2_4_val_flip ='<?php echo $feature4val_flip_2 ?>';  //= $row[$feature1]; 
+         var feature_name_2_5_val_flip ='<?php echo $feature5val_flip_2 ?>';  //= $row[$feature1]; 
+
+           var price1_flip =   '<?php echo $price_flip_1 ?>';  
+          var rating1_flip = ' <?php echo $rating_flip_1 ?>';  //= $row['rating'];
+          var link1_flip=' <?php echo $link_flip_1 ?>';    //= $row['link'];
+          var pos1_flip=parseInt('<?php echo $pos_flip_1 ?>');   //= $row['pos'];
+          var neg1_flip= parseInt(' <?php echo $neg_flip_1 ?>');  //= $row['neg'];
+          var mix1_flip =parseInt ('<?php echo $mix_flip_1 ?>');  //= $row['mix'];
+         var feature_name_1_1_val_flip ='<?php echo $feature1val_flip_1 ?>';  //= $row[$feature1]; 
+          var feature_name_1_2_val_flip ='<?php echo $feature2val_flip_1 ?>';  //= $row[$feature1]; 
+         var feature_name_1_3_val_flip ='<?php echo $feature3val_flip_1 ?>';  //= $row[$feature1]; 
+         var feature_name_1_4_val_flip ='<?php echo $feature4val_flip_1 ?>';  //= $row[$feature1]; 
+         var feature_name_1_5_val_flip ='<?php echo $feature5val_flip_1 ?>';  //= $row[$feature1]; 
+                   
+    var feature_name1_1_val =  feature_name_1_1_val_flip + feature_name1_1_val_amz ;                 
+    var feature_name1_2_val =  feature_name_1_2_val_flip + feature_name1_2_val_amz ;
+    var feature_name1_3_val =  feature_name_1_3_val_flip + feature_name1_3_val_amz ;
+    var feature_name1_4_val =  feature_name_1_4_val_flip + feature_name1_4_val_amz ;
+    var feature_name1_5_val =  feature_name_1_5_val_flip + feature_name1_5_val_amz ;
+
+     var feature_name2_1_val =  feature_name_2_1_val_flip + feature_name2_1_val_amz ;                 
+    var feature_name2_2_val =  feature_name_2_2_val_flip +  feature_name2_2_val_amz ;
+    var feature_name2_3_val =  feature_name_2_3_val_flip +  feature_name2_3_val_amz ;
+    var feature_name2_4_val =  feature_name_2_4_val_flip +  feature_name2_4_val_amz ;
+    var feature_name2_5_val =  feature_name_2_5_val_flip +  feature_name2_5_val_amz ;
+
+    var pos1=pos1_flip+pos1_amz;
+    var neg1 = neg1_flip+neg1_amz;
+    var mix1 = mix1_flip+mix1_amz;
+
+    var pos2= pos2_flip + pos2_amz;
+    var neg2= neg2_flip+neg2_amz;
+    var mix2 = mix2_flip+mix2_amz;
+
+
+
+
+      var path1= name1.concat(".jpg");
+      document.getElementById('product1').setAttribute('src',path1);
+
+
+      var path2= name2.concat(".jpg");
+      document.getElementById('product2').setAttribute('src',path2);
+
+      console.log(path1);
+console.log(path2);
+        document.getElementById('p1_amz').setAttribute('href',link1_amz);
+        document.getElementById('p1_flip').setAttribute('href',link1_flip);
+        document.getElementById('p2_amz').setAttribute('href',link2_amz);
+        document.getElementById('p2_flip').setAttribute('href',link2_flip);
+        document.getElementById('p1_price').innerHTML=price1_amz;
+        document.getElementById('p2_price').innerHTML=price2_amz;
+
+
+
+
+
+
 
 
       google.charts.load('current', {'packages':['corechart']});
@@ -181,16 +356,16 @@ console.log(cmp2);
       function drawbarchart() {
         var data = google.visualization.arrayToDataTable([
           ['', 'Positive', 'Negative' ],
-          ['Camera', 1000, 400, ],
-          ['Memory', 1170, 460, ],
-          ['Hardware', 660, 1120, ],
-          ['Battery', 1030, 540, ],
-          ['Processor', 1500,500 ]
+          [feature_name1_1, feature_name1_1_val, 100-feature_name1_1_val, ],
+          [feature_name1_2, feature_name1_2_val, 100-feature_name1_2_val, ],
+          [feature_name1_3, feature_name1_3_val, 100-feature_name1_3_val, ],
+          [feature_name1_4, feature_name1_4_val, 100-feature_name1_4_val, ],
+          [feature_name1_5, feature_name1_5_val, 100-feature_name1_5_val ]
         ]);
 
         var options = {
           chart: {
-            title: 'Semantic Analysis',
+            title: 'Feature Based Analysis',
             subtitle: 'Positive or Negative',
           }
         };
@@ -230,16 +405,16 @@ google.charts.setOnLoadCallback(drawChart2);
       function drawbarchart2() {
         var data = google.visualization.arrayToDataTable([
           ['', 'Positive', 'Negative' ],
-          ['Camera', 1000, 400, ],
-          ['Memory', 1170, 460, ],
-          ['Hardware', 660, 1120, ],
-          ['Battery', 1030, 540, ],
-          ['Processor', 1500,500 ]
+          [feature_name2_1, feature_name2_1_val, 100-feature_name2_1_val, ],
+          [feature_name2_2, feature_name2_2_val, 100-feature_name2_2_val, ],
+          [feature_name2_3, feature_name2_3_val, 100-feature_name2_3_val, ],
+          [feature_name2_4, feature_name2_4_val, 100-feature_name2_4_val, ],
+          [feature_name2_5, feature_name2_5_val, 100-feature_name2_5_val ]
         ]);
 
         var options = {
           chart: {
-            title: 'Semantic Analysis',
+            title: 'Feature Based Analysis',
             subtitle: 'Positive or Negative',
           }
         };
@@ -248,17 +423,6 @@ google.charts.setOnLoadCallback(drawChart2);
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
-
-
-
-
-
-
-
-
-
-
-
 
 });//ready
   </script>
@@ -300,9 +464,35 @@ google.charts.setOnLoadCallback(drawChart2);
     float: bottom;
   }
 
+#imagespace{
+  height: 500px;
+}
 
+#pie1
+{
+height: 300px;
+}
+
+#pie2
+{
+height: 300px;
+}
+
+#bar1
+{
+  height: 300px;
+}
+
+#bar2
+{
+  height: 300px;
+}
+
+#link{
+
+  height: 100px;
+}
   </style>
-  
 
         
 
@@ -328,8 +518,15 @@ google.charts.setOnLoadCallback(drawChart2);
 
               <div id="info" class="container" >
                  <div id="leftdiv">
-                    <div class="well ">
-                    <img src="" height="400" width="400" >
+                    <div id="productprice"> <font size="5"><b>Price:<br><p id="p1_price"></p> </b></font></div>
+                    <div id = "imagespace" class="well ">
+                    <img id="product1" src="" class="img-responsive" >
+                    </div>
+                    <div id="link" align="center">
+                     <font size="5"><b> Product Link:</b><br>
+                     <a id="p1_amz" href="" target="_blank"><img src="amazon_icon.jpg" height="30" width="30"></a>&nbsp&nbsp&nbsp&nbsp
+                      <a id="p1_flip" href="" target="_blank"><img src="flipkart_icon.jpg" height="30" width="30"></a>
+                     </font>
                     </div>
                     <div id="pie1" class="well ">
                       
@@ -341,9 +538,18 @@ google.charts.setOnLoadCallback(drawChart2);
                  </div>
 
                  <div id ="rightdiv">
-                    <div class="well ">
-                    <img src="" height="400" width="400">
+                    <div id="productprice"> <font size="5"><b>Price:<br><p id="p2_price"></p> </b></font></div>
+                    <div class="well " id = "imagespace">
+                    <img id="product2" src="" class="img-responsive">
                     </div>
+                   <div id="link" align="center ">
+                                          <font size="5"><b> Product Link:</b><br>
+                     <a id="p2_amz" href="" target="_blank"><img src="amazon_icon.jpg" height="30" width="30"></a>&nbsp&nbsp&nbsp&nbsp
+                      <a id="p2_flip" href="" target="_blank"><img src="flipkart_icon.jpg" height="30" width="30"></a>
+                      </font>
+                    </div>
+                   
+
                     <div id="pie2" class="well ">
                       
                     </div>

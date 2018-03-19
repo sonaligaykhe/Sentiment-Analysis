@@ -36,6 +36,8 @@
               $inp = $_POST['rsearchbar']; 
               } 
 
+                $inp = $_SESSION['aname'];
+                
             $sql="select * from allproduct where productname='$inp'";
             $result=mysqli_query($conn,$sql);
 
@@ -57,27 +59,19 @@
             $feature4= $row['feature4']; 
             $feature5= $row['feature5']; 
 
-            echo $name;            
-            $tname = (string)$tname;
-            echo $tname;            
-            echo $feature1;
-            echo "dfvf";          
-//            mysqli_close($conn);
-
-
            $conn2 = mysqli_connect("localhost", "root", "", "project");
 //           $sql2 = "select * from '$tname' where name = '$inp'";
 
            $sql2="select * from `".$tname."` where `name`='$inp'";
             $result=mysqli_query($conn2,$sql2);
-
+/*
             if ($result == TRUE) {
             echo "success 2";
             } 
             else {
             echo "Error: " . $sql2 . "<br>" . $conn2->error;
             }
-
+*/
             $row=mysqli_fetch_assoc($result);
 
             $price_amz = $row['price'];
@@ -98,10 +92,12 @@
 
             $sql_f1="select * from allproduct where productname='$inp' and tablename like '%f' ";
             $result=mysqli_query($conn_f1,$sql_f1);
-
+          
+            $row=mysqli_fetch_assoc($result);
+          
             $tname_flip= $row['tablename'];
 
-           $sql_f2="select * from `".$tname."` where `name`='$inp'";
+           $sql_f2="select * from `".$tname_flip."` where `name`='$inp'";
             $result=mysqli_query($conn2,$sql_f2);
 
             if ($result == TRUE) {
@@ -125,7 +121,7 @@
             $feature4val_flip= $row[$feature4]; 
             $feature5val_flip= $row[$feature5]; 
 
-            echo $price_flip ;//= $row['price'];
+         /*   echo $price_flip ;//= $row['price'];
             echo $rating_flip ;//= $row['rating'];
             echo $link_flip ;//= $row['link'];
             echo $pos_flip;// = $row['pos'];
@@ -136,7 +132,7 @@
             echo $feature3val_flip;//= $row[$feature3]; 
             echo $feature4val_flip;//= $row[$feature4]; 
             echo $feature5val_flip;//= $row[$feature5]; 
-				   
+				 */  
 				   
 				   
 				   
@@ -149,7 +145,7 @@
 				   
               if (isset($_POST['name']))
                 {
-                $name = $_POST['name']; 
+                $personname = $_POST['name']; 
                 } 
               if (isset($_POST['email']))
                 {
@@ -158,6 +154,12 @@
               if (isset($_POST['comments']))
                 {
                 $comment = $_POST['comments']; 
+
+
+
+                echo $name;
+                echo $email;
+                echo $comment;
                 }  
         ?>
 
@@ -171,16 +173,55 @@ $(document).ready(function(){
         var link_amz = '<?php echo $link_amz ?>';
         var price = '<?php echo $price_amz ?>';
         var rating_amz = '<?php echo $rating_amz ?>';
+        var pos_flip = '<?php echo $pos_flip ?>';
+        var neg_flip = '<?php echo $neg_flip ?>';
+        var mix_flip = '<?php echo $mix_flip ?>';
+        var link_flip = '<?php echo $link_flip ?>';
         
+        var feature_name1='<?php echo $feature1?>';
+        var feature_name2='<?php echo $feature2?>';
+        var feature_name3='<?php echo $feature3?>';
+        var feature_name4='<?php echo $feature4?>';
+        var feature_name5='<?php echo $feature5?>';
+        //var price = '<?php echo $price_amz ?>';
+        //var rating_amz = '<?php echo $rating_amz ?>';
+
+         var feature_val_flip_1 = '<?php echo $feature1val_flip?>'; 
+          var feature_val_flip_2 = '<?php echo $feature2val_flip?>'; 
+         var feature_val_flip_3 = '<?php echo $feature3val_flip?>'; 
+         var feature_val_flip_4 = '<?php echo $feature4val_flip?>'; 
+         var feature_val_flip_5 = '<?php echo $feature5val_flip?>'; 
+           
+                
+           var feature_val_amz_1 = '<?php echo $feature1val_amz ?>';
+           var feature_val_amz_2 = '<?php echo $feature2val_amz ?>';
+           var feature_val_amz_3 = '<?php echo $feature3val_amz ?>';
+           var feature_val_amz_4 = '<?php echo $feature4val_amz ?>';
+           var feature_val_amz_5 = '<?php echo $feature5val_amz ?>';
+            
+           var feature_val_1= feature_val_flip_1+feature_val_amz_1; 
+           var feature_val_2= feature_val_flip_2+feature_val_amz_2;
+           var feature_val_3= feature_val_flip_3+feature_val_amz_3;
+           var feature_val_4= feature_val_flip_4+feature_val_amz_4;
+           var feature_val_5= feature_val_flip_5+feature_val_amz_5;
+
+
+
+
+
         console.log(pos_amz);
         console.log(neg_amz);
         console.log(mix_amz);
         console.log(link_amz);
+        console.log(link_flip);
         
         pos_amz= parseInt(pos_amz);
         neg_amz= parseInt(neg_amz);
         mix_amz= parseInt(mix_amz);
         
+         pos_flip= parseInt(pos_flip);
+        neg_flip= parseInt(neg_flip);
+        mix_flip= parseInt(mix_flip);
         
 
          console.log(name);
@@ -200,14 +241,15 @@ $(document).ready(function(){
 
 
         document.getElementById("product_link1").setAttribute('href', link_amz);
+        document.getElementById("product_link2").setAttribute('href', link_flip);
 
 
       
      
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart1);
 
-      function drawChart() {
+      function drawChart1() {
 
         var data = google.visualization.arrayToDataTable([
           ['', '%'],
@@ -219,7 +261,9 @@ $(document).ready(function(){
         ]);
 
         var options = {
-          title: 'Sentiment Analysis'
+          title: 'Sentiment Analysis(Amazon)',
+          is3D: true,
+        //pieHole:0.4,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('pie1'));
@@ -227,22 +271,75 @@ $(document).ready(function(){
         chart.draw(data, options);
       }
 
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart2);
+
+      function drawChart2() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['', '%'],
+          ['Positive',pos_flip],
+          ['Negative',neg_flip],
+          ['Mix', mix_flip]
+          
+          
+        ]);
+
+        var options = {
+          title: 'Sentiment Analysis(Flipkart)',
+          is3D: true,
+        //pieHole:0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('pie2'));
+
+        chart.draw(data, options);
+      }
+
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart3);
+
+      function drawChart3() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['', '%'],
+          ['Positive',pos_amz+pos_flip],
+          ['Negative',neg_amz+neg_flip],
+          ['Mix', mix_amz+mix_flip]
+          
+          
+        ]);
+
+        var options = {
+          title: 'Sentiment Analysis (Overall)',
+      is3D: true,
+      //  pieHole:0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('pie3'));
+
+        chart.draw(data, options);
+      }
+
+
          google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawbarchart);
 
       function drawbarchart() {
         var data = google.visualization.arrayToDataTable([
           ['', 'Positive', 'Negative' ],
-          ['Camera', 1000, 400, ],
-          ['Memory', 1170, 460, ],
-          ['Hardware', 660, 1120, ],
-          ['Battery', 1030, 540, ],
-          ['Processor', 1500,500 ]
+          [feature_name1, feature_val_1,100-feature_val_1 , ],
+          [feature_name2, feature_val_2, 100 - feature_val_2, ],
+          [feature_name3, feature_val_3, 100 - feature_val_3, ],
+          [feature_name4, feature_val_4, 100 - feature_val_4, ],
+          [feature_name5, feature_val_5,100 - feature_val_5 ]
         ]);
 
         var options = {
           chart: {
-            title: 'Semantic Analysis',
+            title: ' Feature based Analysis',
             subtitle: 'Positive or Negative',
           }
         };
@@ -359,8 +456,8 @@ $(document).ready(function(){
 
 
          <br><b>Links:</b><br><br></font>
-           <a id="product_link1" href=""><img src="amazon_icon.jpg" height="50" width="50" ></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-           <a id="product_link2" href=""> <img src="flipkart_icon.jpg" height="50" width="50"></a>
+           <a id="product_link1" href="" target="_blank"><img src="amazon_icon.jpg" height="50" width="50" ></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+           <a id="product_link2" href="" target="_blank"> <img src="flipkart_icon.jpg" height="50" width="50"></a>
         </div>
 
         <div id="pie" >

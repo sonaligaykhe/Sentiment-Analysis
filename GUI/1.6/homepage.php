@@ -13,6 +13,8 @@
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="jquery.easy-autocomplete.min.js"></script> 
+
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  
  <script type="text/javascript">
@@ -28,6 +30,9 @@ $("#srchbtn").click(function(){
 
   window.open("resultpage.php","_self");
 });*/
+
+
+      
       google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart)
      
@@ -38,14 +43,15 @@ google.charts.setOnLoadCallback(drawChart)
         data.addColumn('string', 'Sentiment');
         data.addColumn('number', 'Reviews');
         data.addRows([
-          ['Positive', 200],
-          ['Negative', 300],
-          ['Mixed', 40]
+          ['Positive', 67],
+          ['Negative', 26],
+          ['Mixed', 7]
         ]);
 
         // Set chart options
         var options = {
-          title: 'Sentiment Analysis'
+          title: 'Sentiment Analysis',
+          is3D: true,
         };
 
         // Instantiate and draw our chart, passing in some options.
