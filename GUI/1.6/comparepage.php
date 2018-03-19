@@ -1,63 +1,120 @@
 <?php
-              $dbhost = "localhost";
+         $dbhost = "localhost";
              $dbuser = "root";
              $dbpass = "";
              $db = "project";
 
              error_reporting(0);
+            session_start();  
 
-            $link = mysqli_connect("localhost", "root", "", "project");
-            if($link==TRUE)
-          echo "Connected Successfully";
-         
-            $sql= "select * from count";
+            $conn = mysqli_connect("localhost", "root", "", "project");
 
-             $result=mysqli_query($link,$sql);
+
+              if (isset($_POST['cmp1']))
+              {
+              $compare1 = $_POST['cmp1']; 
+              } 
+             
+              if (isset($_POST['cmp2']))
+              {
+              $compare2 = $_POST['cmp2']; 
+              } 
+
+            $sql1="select * from allproduct where productname='$compare1'";
+            $sql2="select * from allproduct where productname='$compare2'";
             
-          if ($result == TRUE) {
-                echo "New record created successfully";
-            } else {
-              //  echo "Error: " . $sql . "<br>" . $conn->error;
+            $result1=mysqli_query($conn,$sql1);
+
+            $result2=mysqli_query($conn,$sql2);
+
+            if ($result == TRUE) {
+            echo "success1  ";
+            } 
+            else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
             }
 
-             
-              if (isset($_POST['cmp1']))
-                {
-                $inp = $_POST['cmp1']; 
-                } 
-
-              if (isset($_POST['cmp2']))
-                {
-                $inp2 = $_POST['cmp2']; 
-                } 
-
-     
-               while($row = mysqli_fetch_assoc($result))
-                     {   
-              
-                        if($row['name'] == $inp )
-                           {
-                              $name1= $row['name']; 
-                              $pos1= $row['pos'];
-                              $neg1= $row['neg'];
-                              $mix1= $row['mix'];
-                                
-                            } 
+            $row=mysqli_fetch_assoc($result1);
+            
+            $name1= $row['productname']; 
+            $tname1= $row['tablename'];
+            $feature1_1= $row['feature1']; 
+            $feature2_1= $row['feature2']; 
+            $feature3_1= $row['feature3']; 
+            $feature4_1= $row['feature4']; 
+            $feature5_1= $row['feature5']; 
 
 
-                        if($row['name'] == $inp2)
-                           {
-                              $name2= $row['name']; 
-                              $pos2= $row['pos'];
-                              $neg2= $row['neg'];
-                              $mix2= $row['mix'];
-                              
-                            }        
+            $row=mysqli_fetch_assoc($result2);
+            
+            $name2= $row['productname']; 
+            $tname2= $row['tablename'];
+            $feature1_2= $row['feature1']; 
+            $feature2_2= $row['feature2']; 
+            $feature3_2= $row['feature3']; 
+            $feature4_2= $row['feature4']; 
+            $feature5_2= $row['feature5']; 
 
 
+/*
+            echo $name;            
+            $tname = (string)$tname;
+            echo $tname;            
+            echo $feature1;
+            echo "dfvf";    */      
+//            mysqli_close($conn);
+
+            //$conn = mysqli_connect("localhost", "root", "", "project");
+//         
+           $conn2 = mysqli_connect("localhost", "root", "", "project");
+//           $sql2 = "select * from '$tname' where name = '$inp'";
+            $sql3="select * from `".$tname1."` where `name`='$compare1'";
+          
+           $sql4="select * from `".$tname2."` where `name`='$compare2'";
+            
+            $result3=mysqli_query($conn2,$sql3);
+
+            $result4=mysqli_query($conn2,$sql4);
+            if ($result == TRUE) {
+            echo "success 2";
+            } 
+            else {
+            echo "Error: " . $sql2 . "<br>" . $conn2->error;
+            }
+
+            $row=mysqli_fetch_assoc($result3);
+
+            $price_amz_1 = $row['price'];
+            $rating_amz_1 = $row['rating'];
+            $link_amz_1 = $row['link'];
+            $pos_amz_1 = $row['pos'];
+            $neg_amz_1 = $row['neg'];
+            $mix_amz_1 = $row['mix'];
+            $feature1val_amz_1= $row[$feature1_1]; 
+            $feature2val_amz_1= $row[$feature2_1]; 
+            $feature3val_amz_1= $row[$feature3_1]; 
+            $feature4val_amz_1= $row[$feature4_1]; 
+            $feature5val_amz_1= $row[$feature5_1]; 
+            
+
+            $row=mysqli_fetch_assoc($result4);
+
+            $price_amz_2 = $row['price'];
+            $rating_amz_2 = $row['rating'];
+            $link_amz_2 = $row['link'];
+            $pos_amz_2 = $row['pos'];
+            $neg_amz_2 = $row['neg'];
+            $mix_amz_2 = $row['mix'];
+            $feature1val_amz_2= $row[$feature1_2]; 
+            $feature2val_amz_2= $row[$feature2_2]; 
+            $feature3val_amz_2= $row[$feature3_2]; 
+            $feature4val_amz_2= $row[$feature4_2]; 
+            $feature5val_amz_2= $row[$feature5_2]; 
+            
 
 
-                      }                    
+            mysqli_close($conn);
+                         
         ?>
 
 
@@ -80,16 +137,16 @@
 <script type="text/javascript">
 $(document).ready(function(){
         
-            var cmp1 = '<?php echo $inp;?>';
-            var cmp2 = '<?php echo $inp2;?>';
+            var cmp1 = '<?php echo $compare1;?>';
+            var cmp2 = '<?php echo $compare2;?>';
             var name1 = '<?php echo $name1;?>';
-            var pos1 = parseInt('<?php echo $pos1;?>');
-            var neg1 = parseInt('<?php echo $neg1;?>');
-            var mix1 = parseInt('<?php echo $mix1;?>');
+            var pos1 = parseInt('<?php echo $pos_amz_1;?>');
+            var neg1 = parseInt('<?php echo $neg_amz_1;?>');
+            var mix1 = parseInt('<?php echo $mix_amz_1;?>');
             var name2 = '<?php echo $name2;?>';
-            var pos2 = parseInt('<?php echo $pos2;?>');
-            var neg2 = parseInt('<?php echo $neg2;?>');
-            var mix2 = parseInt('<?php echo $mix2;?>');
+            var pos2 = parseInt('<?php echo $pos_amz_2;?>');
+            var neg2 = parseInt('<?php echo $neg_amz_2;?>');
+            var mix2 = parseInt('<?php echo $mix_amz_2;?>');
 
 console.log(cmp1);
 console.log(cmp2);
@@ -295,25 +352,6 @@ google.charts.setOnLoadCallback(drawChart2);
                     </div>
                  </div>
           </div>
-       <form action="comparepage.php" method="post"> 
-    <div class="" id="review">
-      <h3 align="center"> Add Reviews:</h3>
-      <div class="row" id="name">
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-        </div>
-        <div class="col-sm-6 form-group" >
-          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-        </div>
-      </div >
-      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <button class="btn btn-default pull-right" type="submit">Send</button>
-        </div>
-      </div>
-    </div>
-   </form>    
 
 
 </body>

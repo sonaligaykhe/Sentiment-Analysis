@@ -3,8 +3,6 @@
 
 
 <head>
-  <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Bootstrap Theme Company Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -30,18 +28,9 @@ $("#srchbtn").click(function(){
 
   window.open("resultpage.php","_self");
 });*/
-
- 
-
- // Load the Visualization API and the corechart package.
       google.charts.load('current', {'packages':['corechart']});
-
-      // Set a callback to run when the Google Visualization API is loaded.
-     google.charts.setOnLoadCallback(drawChart)
+google.charts.setOnLoadCallback(drawChart)
      
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
       function drawChart() {
 
         // Create the data table.
@@ -56,12 +45,12 @@ $("#srchbtn").click(function(){
 
         // Set chart options
         var options = {
-                       'width':600,
-                       'height':500};
+          title: 'Sentiment Analysis'
+        };
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('motopie'));
-        chart.draw(data, options);
+        chart.draw(data,options);
       }
 
 
@@ -72,16 +61,16 @@ $("#srchbtn").click(function(){
       function drawbarchart() {
         var data = google.visualization.arrayToDataTable([
           ['', 'Positive', 'Negative' ],
-          ['Camera', 1000, 400, ],
-          ['Memory', 1170, 460, ],
-          ['Hardware', 660, 1120, ],
-          ['Battery', 1030, 540, ],
-          ['Processor', 1500,500 ]
+          ['Camera', 71.42, 100-71.42, ],
+          ['Memory', 50, 50, ],
+          ['Hardware', 50, 50, ],
+          ['Battery', 75, 25, ],
+          ['Processor', 50,50 ]
         ]);
 
         var options = {
           chart: {
-            title: 'Semantic Analysis',
+            title: 'Featured Based Analysis',
             subtitle: 'Positive or Negative',
           }
         };
@@ -138,10 +127,10 @@ $("#srchbtn").click(function(){
   }
   .logo-small {
       color: #f4511e;
-      font-size: 50px;
+      font-size/*: 50px;
   }
   .logo {
-      color: #f4511e;
+      co*/lor: #f4511e;
       font-size: 200px;
   }
   .thumbnail {
@@ -288,6 +277,18 @@ $("#srchbtn").click(function(){
         font-size: 150px;
     }
   }
+
+#navbar2{
+  background-color: black;
+}
+.navbar-nav.navbar-center{
+  position: absolute;
+  left:50%;
+  transform: translateX(-50%);
+  
+}
+
+
   </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -305,7 +306,7 @@ $("#srchbtn").click(function(){
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#senti">SENTIMENTS</a></li>
-        <li><a href="#semantic">SEMANTICS</a></li>
+        <li><a href="#feature">FEATURED BASED</a></li>
         <li><a href="#about">ABOUT</a></li>
         <li><a href="#services">SERVICES</a></li>
         <li><a href="#contact">CONTACT</a></li>
@@ -315,7 +316,7 @@ $("#srchbtn").click(function(){
   </div>
 </nav>
 
-<div class="jumbotron text-center">
+<div class="jumbotron text-center .row">
   <h1>Sentiment Analyzer</h1>  
   <h3> We Know And We Care...!!</h3> 
    <form class="form-inline" action="resultpage.php" method="post">
@@ -325,31 +326,63 @@ $("#srchbtn").click(function(){
         <button type="submit" class="btn btn-danger" id='srchbtn'>Search</button>
       </div>
     </div>
-  </form>
+  </form> 
+
+
+<!-- <div class="collapse navbar-collapse " id="navbar2">
+      <ul class="nav navbar-nav navbar-center" style="text-align: center;">
+        <li><a href="allmobile.php">MOBILES</a></li>
+        <li><a href="alllaptop.php">LAPTOPS</a></li>
+        <li><a href="allpendrive.php">PENDRIVE</a></li>
+        <li><a href="allwatch.php">WATCHES</a></li>
+        <li><a href="alltv.php">TV</a></li>
+        
+      </ul>
+    </div>
+ --> <br>
+<div class="container" style="color: white;">
+
+       <ul class="nav navbar-nav navbar-center" >
+        <li ><a href="allmobile.php">MOBILES</a></li>
+        <li><a href="alllaptop.php">LAPTOPS</a></li>
+        <li><a href="allpendrive.php">PENDRIVE</a></li>
+        <li><a href="allwatch.php">WATCHES</a></li>
+        <li><a href="alltv.php">TV</a></li>
+        
+      </ul>
+   
+</div>
+
 </div>
 
 <div id="senti" class="container-fluid text-center" >
     <h2>Sentiment Analysis Basedon reviews</h2>
-    <div class="col-sm-7 slideanim">
-   <table>
+    <div class="col-sm-12 slideanim">
+          <table>
      <tr>
-       <th><img src="motog5.jpg" width="400" height="400"></th>
-       <th> <h1>product information</h1>></th>
-       <th>   <div id="motopie"></div>
+       <th><img src="Panasonic.jpg" width="400" height="280"></th>
+       <th><h1 align="center">  Panasonic</h1> 
+        <h2 align="center">  Price:Rs 30,000</h2>
+        <h3 align="center">Rating: 4.1/5</h3></th>
+       <th>   <div id="motopie"  style="width:400px ; height: 400px"></div>
        </th>
      </tr>
-   </table>
+   </table
   </div>  
 </div>
 
-<div id="semantic" class="container-fluid text-center" >
-    <h2>Semantic Analysis Basedon reviews</h2>
+<div id="feature" class="container-fluid text-center" >
+    <h2>Featured Based Analysis</h2>
     <div class="col-sm-7 slideanim">
    <table>
      <tr>
-       <th><img src="motog5.jpg" width="400" height="400"></th>
-       <th> <h1>product information</h1></th>
-       <th>   <div id="motobar" style="width:400px ; height: 350px"></div>
+       <th><img src="Apple iPhone 7 Plus.jpg"  width="250" class="img-responsive"></th>
+       
+       <th > 
+        <h1>Apple iPhone 7</h1>   
+        <h2>Price:Rs 65,995</h2>
+        <h3 >Rating: 4.1/5</h3></th>
+       <th>   <div id="motobar" style="width:400px ; height: 400px"></div>
        </th>
      </tr>
    </table>

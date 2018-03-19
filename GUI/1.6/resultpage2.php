@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +9,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
 
   <?php   
              $dbhost = "localhost";
@@ -20,100 +21,94 @@
              $dbpass = "";
              $db = "project";
 
-             error_reporting(0);
-            session_start();  
+             
+            session_start();
+            error_reporting(0);
 
-            $conn = mysqli_connect("localhost", "root", "", "project");
-
+            $link = mysqli_connect("localhost", "root", "", "project");
+           // if($link==TRUE)
+         //   echo "Connected Successfully";
+           // $abc = "<script> document.write(a)</script>";
 
               if (isset($_POST['searchbar']))
-              {
-              $inp = $_POST['searchbar']; 
-              } 
+                {
+                $inp = $_POST['searchbar']; 
              
+                } 
+             
+
               if (isset($_POST['rsearchbar']))
-              {
-              $inp = $_POST['rsearchbar']; 
-              } 
+                {
+                $inp = $_POST['rsearchbar']; 
+                } 
 
-            $sql="select * from allproduct where productname='$inp'";
-            $result=mysqli_query($conn,$sql);
+              $inp = $_SESSION['product_name_from1stpage'];
+              
+              echo $inp;
+
+            $sql="select * from mobileinfo where name='$inp'";
+
+             $result=mysqli_query($link,$sql);
 
 
-            if ($result == TRUE) {
-            echo "success1  ";
+          if ($result == TRUE) {
+                     echo "New record created successfully";
             } 
+
             else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+              
+               echo "Error: " . $sql . "<br>" . $conn->error;
             }
 
-            $row=mysqli_fetch_assoc($result);
+             
+
+                      $row=mysqli_fetch_assoc($result);
+                              $name= $row['name']; 
+                              $pos= $row['pos'];
+                              $neg= $row['neg'];
+                              $mix= $row['mix'];
+                              $link= $row['link'];
+                              $price= $row['price'];
+                              $rating =$row['rating']; 
+
             
-            $name= $row['productname']; 
-            $tname= $row['tablename'];
-            $feature1= $row['feature1']; 
-            $feature2= $row['feature2']; 
-            $feature3= $row['feature3']; 
-            $feature4= $row['feature4']; 
-            $feature5= $row['feature5']; 
-
-            echo $name;            
-            $tname = (string)$tname;
-            echo $tname;            
-            echo $feature1;
-            echo "dfvf";          
-//            mysqli_close($conn);
-
-
-           $conn2 = mysqli_connect("localhost", "root", "", "project");
-//           $sql2 = "select * from '$tname' where name = '$inp'";
-
-           $sql2="select * from `".$tname."` where `name`='$inp'";
-            $result=mysqli_query($conn2,$sql2);
-
-            if ($result == TRUE) {
-            echo "success 2";
-            } 
-            else {
-            echo "Error: " . $sql2 . "<br>" . $conn2->error;
-            }
-
-            $row=mysqli_fetch_assoc($result);
-
-            $price_amz = $row['price'];
-            $rating_amz = $row['rating'];
-            $link_amz = $row['link'];
-            $pos_amz = $row['pos'];
-            $neg_amz = $row['neg'];
-            $mix_amz = $row['mix'];
-            $feature1val_amz= $row[$feature1]; 
-            $feature2val_amz= $row[$feature2]; 
-            $feature3val_amz= $row[$feature3]; 
-            $feature4val_amz= $row[$feature4]; 
-            $feature5val_amz= $row[$feature5]; 
-            
-            mysqli_close($conn);
-
+/*
                        $_SESSION['product_name_from1stpage'] = $name; 
-                   //    $product_name = $_SESSION['product_name_from2ndpage'];
+                       $product_name = $_SESSION['product_name_from2ndpage'];*/
 
 
               if (isset($_POST['name']))
                 {
-                $name = $_POST['name']; 
+                $name_review = (string)$_POST['name']; 
                 } 
               if (isset($_POST['email']))
                 {
-                $email = $_POST['email']; 
+                $email = (string)$_POST['email']; 
                 } 
               if (isset($_POST['comments']))
                 {
-                $comment = $_POST['comments']; 
+                $comment = (string)$_POST['comments']; 
                 } 
-                  
+
+       
 
 
 
+            $link1 = mysqli_connect("localhost", "root", "", "project");
+            $sql="insert into review (product,name,email,reviews) values ('$name','$name_review','$email','$comment')";
+            #$sql="insert into review (product,name,email,reviews) values ('$name','$_POST['name']','$_POST['email']','$_POST['comments']')";
+            $result=mysqli_query($link1,$sql);
+
+            if ($result == TRUE) {
+                     echo "New record xyz created successfully";
+            } 
+
+            else {
+              
+               #echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+
+ 
 
 
 
@@ -123,41 +118,37 @@
 $(document).ready(function(){
         
         var name= '<?php echo $name?>';
-        var pos_amz = '<?php echo $pos_amz ?>';
-        var neg_amz = '<?php echo $neg_amz ?>';
-        var mix_amz = '<?php echo $mix_amz ?>';
-        var link_amz = '<?php echo $link_amz ?>';
-        var price = '<?php echo $price_amz ?>';
-        var rating_amz = '<?php echo $rating_amz ?>';
+        var pos = '<?php echo $pos ?>';
+        var neg = '<?php echo $neg ?>';
+        var mix = '<?php echo $mix ?>';
+        var link = '<?php echo $link ?>';
+        var price = '<?php echo $price ?>';
+        var rating = '<?php echo $rating?>';
+        //var Flipkart_link = '<?php echo $link ?>';
+        console.log(pos);
+        console.log(neg);
+        console.log(mix);
+        console.log(link);
         
-        console.log(pos_amz);
-        console.log(neg_amz);
-        console.log(mix_amz);
-        console.log(link_amz);
-        
-        pos_amz= parseInt(pos_amz);
-        neg_amz= parseInt(neg_amz);
-        mix_amz= parseInt(mix_amz);
+        pos= parseInt(pos);
+        neg= parseInt(neg);
+        mix= parseInt(mix);
         
         
 
          console.log(name);
-        var p_name = "Name: ".concat(name);
-        document.getElementById("product_name").innerHTML=p_name;
-
-          var p_image = name.concat(".jpg");
-          document.getElementById("productimg").setAttribute('src', p_image);
-          console.log(p_image);
-
+        name = "Name: ".concat(name);
+        document.getElementById("product_name").innerHTML=name;
+      
         price = "Price: ".concat(price);
         document.getElementById("product_price").innerHTML=price;
 
-        rating_amz = "Rating:" .concat(rating_amz);
-         document.getElementById("product_rating").innerHTML=rating_amz;
+        rating = "Rating:" .concat(rating);
+         document.getElementById("product_rating").innerHTML=rating;
 
 
 
-        document.getElementById("product_link1").setAttribute('href', link_amz);
+        document.getElementById("product_link1").setAttribute('href', link);
 
 
       
@@ -169,9 +160,9 @@ $(document).ready(function(){
 
         var data = google.visualization.arrayToDataTable([
           ['', '%'],
-          ['Positive',pos_amz],
-          ['Negative',neg_amz],
-          ['Mix', mix_amz]
+          ['Positive',pos],
+          ['Negative',neg],
+          ['Mix', mix]
           
           
         ]);
@@ -180,7 +171,7 @@ $(document).ready(function(){
           title: 'Sentiment Analysis'
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('pie1'));
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
         chart.draw(data, options);
       }
@@ -205,7 +196,7 @@ $(document).ready(function(){
           }
         };
 
-        var chart = new google.charts.Bar(document.getElementById('graph'));
+        var chart = new google.charts.Bar(document.getElementById('bargraph'));
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
@@ -265,21 +256,9 @@ $(document).ready(function(){
 }
 
 #graph{
-   
+  float: left;
   width: 100%;
   height: 250px;
-  padding-right: 200px;
-  padding-left: 200px;
-
-}
-
-#image{
-  width: 40%;
-  height: 520px;  
-}
-
-#pie1{
-  padding-left:10px; 
 }
 
   </style>      
@@ -305,8 +284,8 @@ $(document).ready(function(){
 
     <div class="container-fluid" id="product">
    
-      <div id="image"  class="col-sm-3 ">
-          <img src="" class="img-responsive" style="width: 100%; height:;" id="productimg" >
+      <div  id="productimg" class="col-sm-3">
+ 
       </div>     
 
         <div  id="productinfo" class="col-sm-3 . well" > 
@@ -316,19 +295,18 @@ $(document).ready(function(){
  
 
 
-         <br><b>Links:</b><br><br></font>
+         </font><br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
            <a id="product_link1" href=""><img src="amazon_icon.jpg" height="50" width="50" ></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
            <a id="product_link2" href=""> <img src="flipkart_icon.jpg" height="50" width="50"></a>
         </div>
 
-        <div id="pie" >
-           <div id="pie1" class="well" ></div>
+        <div id="pie">
+           <div id="pie1" class=" well"></div>
            <div id="pie2" class="well"></div>
            <div id="pie3" class="well"></div>
 
         </div>
-        
-        <div id="graph" class="col-sm-6 slideanim">
+        <div id="graph" class="well">
           
         </div>
 
