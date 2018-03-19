@@ -92,12 +92,61 @@
             $feature4val_amz= $row[$feature4]; 
             $feature5val_amz= $row[$feature5]; 
             
+//flipkart
+           $conn_f1 = mysqli_connect("localhost", "root", "", "project");
+//           $sql2 = "select * from '$tname' where name = '$inp'";
+
+            $sql_f1="select * from allproduct where productname='$inp' and tablename like '%f' ";
+            $result=mysqli_query($conn_f1,$sql_f1);
+
+            $tname_flip= $row['tablename'];
+
+           $sql_f2="select * from `".$tname."` where `name`='$inp'";
+            $result=mysqli_query($conn2,$sql_f2);
+
+            if ($result == TRUE) {
+            echo "success f2";
+            } 
+            else {
+            echo "Error: " . $sql2 . "<br>" . $conn_f2->error;
+            }
+
+            $row=mysqli_fetch_assoc($result);
+
+            $price_flip = $row['price'];
+            $rating_flip = $row['rating'];
+            $link_flip = $row['link'];
+            $pos_flip = $row['pos'];
+            $neg_flip = $row['neg'];
+            $mix_flip = $row['mix'];
+            $feature1val_flip= $row[$feature1]; 
+            $feature2val_flip= $row[$feature2]; 
+            $feature3val_flip= $row[$feature3]; 
+            $feature4val_flip= $row[$feature4]; 
+            $feature5val_flip= $row[$feature5]; 
+
+            echo $price_flip ;//= $row['price'];
+            echo $rating_flip ;//= $row['rating'];
+            echo $link_flip ;//= $row['link'];
+            echo $pos_flip;// = $row['pos'];
+            echo $neg_flip ;//= $row['neg'];
+            echo $mix_flip ;//= $row['mix'];
+            echo $feature1val_flip;//= $row[$feature1]; 
+            echo $feature2val_flip;//= $row[$feature2]; 
+            echo $feature3val_flip;//= $row[$feature3]; 
+            echo $feature4val_flip;//= $row[$feature4]; 
+            echo $feature5val_flip;//= $row[$feature5]; 
+				   
+				   
+				   
+				   
+				   
             mysqli_close($conn);
 
                        $_SESSION['product_name_from1stpage'] = $name; 
                    //    $product_name = $_SESSION['product_name_from2ndpage'];
-
-
+				   
+				   
               if (isset($_POST['name']))
                 {
                 $name = $_POST['name']; 
@@ -109,14 +158,7 @@
               if (isset($_POST['comments']))
                 {
                 $comment = $_POST['comments']; 
-                } 
-                  
-
-
-
-
-
-
+                }  
         ?>
 
 <script type="text/javascript">
