@@ -48,6 +48,8 @@
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://rawgit.com/blaxk/ixband/master/dist/ixBand_1.1.min.js'></script>
 <script src='http://rawgit.com/blaxk/ixsnack/master/bin/ixSnack_0.4.min.js'></script>
+ <script src="jquery.easy-autocomplete.min.js"></script> 
+<link rel="stylesheet" href="easy-autocomplete.min.css"> 
  
 
 </head>
@@ -58,7 +60,68 @@
 
 $( '.slide' ).ixSlideMax();
 
+
+$('#1').click(function(){
+
+  alert("1");
+<?php session_start(); $_SESSION['aname']="Vivo V7+";?>
+
+
+});
+
+
+$('#2').click(function(){
+alert("2");
+<?php session_start(); $_SESSION['aname']="Apple iPhone 7 Plus";?>
+
+
+});
+
+$('#3').click(function(){
+  alert("3");
+<?php session_start(); $_SESSION['aname']="Nokia 8";?>
+
+
+});
+
+$('#4').click(function(){
+alert("4");
+<?php session_start(); $_SESSION['aname']="OnePlus 5T";?>
+
+
+});
+
+
+
+var options = {
+  url: "data.json",
+
+  getValue: "name",
+
+  theme:"purple",
+
+  list: {
+    match: {
+      enabled: true
+    }
+  }
+};
+
+$("#srch").easyAutocomplete(options)
+
+    
+
+
+
+
+
+
   });
+
+
+
+
+
 
 
 
@@ -80,7 +143,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   box-sizing:border-box;
   -webkit-text-size-adjust:none;
 }
-body {margin:50px 10px;}
+body {margin: 0px 0px;}
 ul li {list-style:none;}
 
 
@@ -133,18 +196,22 @@ ul li {list-style:none;}
   background-color: white;
 }
 
+.nav{
+  margin-top: 0px;
+}
+
 
 </style>
 
 
 <body>
 
-  <div class="jumbotron text-center">
+  <div class="jumbotron text-center" id="nav">
   <h1>Sentiment Analyzer</h1> 
   <h3> We Know And We Care...!!</h3>
   <form class="form-inline" action="resultpage.php" method="post">
     <div class="input-group">
-      <input type="" class="form-control" size="50" name="rsearchbar" placeholder="Product Search" required>
+      <input type="" class="form-control" size="50" name="rsearchbar" id="srch" placeholder="Product Search" required>
       <div class="input-group-btn">
         <button type="submit" class="btn btn-danger" id="srchbtn" >Search</button>
       </div>
@@ -160,17 +227,17 @@ ul li {list-style:none;}
     <!-- "ix-list-items" 는 "ix-list-viewport"의 직계 자식요소여야 한다. -->
     <ul class="ix-list-items" style="">
       <!-- "ix-list-item" 는 "ix-list-items"의 직계 자식요소여야 한다. -->
-      <li class="ix-list-item">
-        <a href="resultpage.php"><img src="Vivo V7+.jpg" height="450px" ><?php session_start(); $_SESSION['aname']="Vivo V7+";?></a>
+      <li class="ix-list-item" id="1">
+        <a href="resultpage.php"><img src="Vivo V7+.jpg" height="450px" ></a>
       </li>
-      <li class="ix-list-item">
-        <a href="#"><img src="Apple iPhone 7 Plus.jpg" height="450px"></a>
+      <li class="ix-list-item" id="2">
+        <a href="resultpage.php"><img src="Apple iPhone 7 Plus.jpg" height="450px"></a>
       </li>
-      <li class="ix-list-item">
-        <a href="#"><img src="Nokia 8.jpg" height="450px"></a>
+      <li class="ix-list-item" id="3">
+        <a href="resultpage.php"><img src="Nokia 8.jpg" height="450px"></a>
       </li>
-      <li class="ix-list-item">
-        <a href="#"><img src="OnePlus 5T.jpg" height="450px"></a>
+      <li class="ix-list-item" id="4">
+        <a href="resultpage.php"><img src="OnePlus 5T.jpg" height="450px"></a>
       </li>
     </ul>
   </div>

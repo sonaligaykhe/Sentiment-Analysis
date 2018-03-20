@@ -14,6 +14,10 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="jquery.easy-autocomplete.min.js"></script> 
+  
+
+<!-- CSS file -->
+<link rel="stylesheet" href="easy-autocomplete.min.css"> 
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  
@@ -31,6 +35,21 @@ $("#srchbtn").click(function(){
   window.open("resultpage.php","_self");
 });*/
 
+    var options = {
+  url: "data.json",
+
+  getValue: "name",
+
+  theme:"dark",
+
+  list: {
+    match: {
+      enabled: true
+    }
+  }
+};
+
+$("#srch").easyAutocomplete(options)
 
       
       google.charts.load('current', {'packages':['corechart']});
@@ -313,9 +332,9 @@ google.charts.setOnLoadCallback(drawChart)
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#senti">SENTIMENTS</a></li>
         <li><a href="#feature">FEATURED BASED</a></li>
-        <li><a href="#about">ABOUT</a></li>
-        <li><a href="#services">SERVICES</a></li>
-        <li><a href="#contact">CONTACT</a></li>
+        <li><a href="#about">PRICE PREDICTION</a></li>
+        <li><a href="#services">SEARCH PRODUCT</a></li>
+        <li><a href="#contact">COMPARE PRODUCTS</a></li>
 
       </ul>
     </div>

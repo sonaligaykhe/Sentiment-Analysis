@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="jquery.easy-autocomplete.min.js"></script> 
+<link rel="stylesheet" href="easy-autocomplete.min.css"> 
     
 
   <?php   
@@ -25,19 +27,23 @@
 
             $conn = mysqli_connect("localhost", "root", "", "project");
 
-
+ $inp= $_SESSION['aname'];
+echo "hi";
+echo $inp;
+// session_destroy();
               if (isset($_POST['searchbar']))
               {
-              $inp = $_POST['searchbar']; 
+              $inp = $_POST['searchbar'];
+              //$inp= $_SESSION['aname']; 
               } 
              
               if (isset($_POST['rsearchbar']))
               {
               $inp = $_POST['rsearchbar']; 
+              // $inp= $_SESSION['aname'];
               } 
 
-                $inp = $_SESSION['aname'];
-                
+
             $sql="select * from allproduct where productname='$inp'";
             $result=mysqli_query($conn,$sql);
 
@@ -161,6 +167,8 @@
                 echo $email;
                 echo $comment;
                 }  
+
+
         ?>
 
 <script type="text/javascript">
@@ -199,12 +207,37 @@ $(document).ready(function(){
            var feature_val_amz_4 = '<?php echo $feature4val_amz ?>';
            var feature_val_amz_5 = '<?php echo $feature5val_amz ?>';
             
-           var feature_val_1= feature_val_flip_1+feature_val_amz_1; 
-           var feature_val_2= feature_val_flip_2+feature_val_amz_2;
-           var feature_val_3= feature_val_flip_3+feature_val_amz_3;
-           var feature_val_4= feature_val_flip_4+feature_val_amz_4;
-           var feature_val_5= feature_val_flip_5+feature_val_amz_5;
+           var feature_val_1_pos= (feature_val_flip_1+feature_val_amz_1)/2; 
+           var feature_val_2_pos= (feature_val_flip_2+feature_val_amz_2)/2;
+           var feature_val_3_pos= (feature_val_flip_3+feature_val_amz_3)/2;
+           var feature_val_4_pos= (feature_val_flip_4+feature_val_amz_4)/2;
+           var feature_val_5_pos= (feature_val_flip_5+feature_val_amz_5)/2;
 
+            
+           var feature_val_1_neg= (100- feature_val_flip_1+ 100 - feature_val_amz_1)/2; 
+           var feature_val_2_neg= (100 - feature_val_flip_2+ 100 - feature_val_amz_2)/2;
+           var feature_val_3_neg= (100 - feature_val_flip_3+100 - feature_val_amz_3)/2;
+           var feature_val_4_neg= (100- feature_val_flip_4+ 100- feature_val_amz_4)/2;
+           var feature_val_5_neg= (100 - feature_val_flip_5+100 -feature_val_amz_5)/2;
+
+
+var options = {
+  url: "data.json",
+
+  getValue: "name",
+
+  theme:"dark",
+
+  list: {
+    match: {
+      enabled: true
+    }
+  }
+};
+
+$("#srch").easyAutocomplete(options)
+
+    
 
 
 
@@ -243,7 +276,11 @@ $(document).ready(function(){
         document.getElementById("product_link1").setAttribute('href', link_amz);
         document.getElementById("product_link2").setAttribute('href', link_flip);
 
-
+        document.getElementById('cmpbtn').setAttribute('value',name);
+/*
+        $('cmpbtn').click(function(){
+          window.location.href='comparepage.php?compare1='+name;
+        });*/
       
      
       google.charts.load('current', {'packages':['corechart']});
@@ -330,11 +367,11 @@ $(document).ready(function(){
       function drawbarchart() {
         var data = google.visualization.arrayToDataTable([
           ['', 'Positive', 'Negative' ],
-          [feature_name1, feature_val_1,100-feature_val_1 , ],
-          [feature_name2, feature_val_2, 100 - feature_val_2, ],
-          [feature_name3, feature_val_3, 100 - feature_val_3, ],
-          [feature_name4, feature_val_4, 100 - feature_val_4, ],
-          [feature_name5, feature_val_5,100 - feature_val_5 ]
+          [feature_name1, feature_val_1_pos,100-feature_val_1_pos , ],
+          [feature_name2, feature_val_2_pos, 100 - feature_val_2_pos, ],
+          [feature_name3, feature_val_3_pos, 100 - feature_val_3_pos, ],
+          [feature_name4, feature_val_4_pos, 100 - feature_val_4_pos, ],
+          [feature_name5, feature_val_5_pos,100 - feature_val_5_pos ]
         ]);
 
         var options = {
@@ -421,11 +458,57 @@ $(document).ready(function(){
   padding-left:10px; 
 }
 
+.navbar {
+      margin-bottom: 0;
+      background-color: #f4511e;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #f4511e !important;
+      background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+  }
+ 
+
   </style>      
 
 
 </head>
 <body>
+  <nav class="navbar navbar-default navbar-fixed-top" style="background-color: black">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="homepage.php">our image</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="homepage.php">HOME</a></li>
+        <li><a href="resultpage.php">SEARCH</a></li>
+        <li><a href="comparepage.php">COMPARE</a></li>
+        <li><a href="#services">ADD PRODUCT</a></li>
+        
+
+      </ul>
+    </div>
+  </div>
+</nav>
 
 
 <div class="jumbotron text-center">
@@ -433,7 +516,7 @@ $(document).ready(function(){
   <h3> We Know And We Care...!!</h3>
   <form class="form-inline" action="resultpage.php" method="post">
     <div class="input-group">
-      <input type="" class="form-control" size="50" name="rsearchbar" placeholder="Product Search" required>
+      <input type="" class="form-control" size="50" name="rsearchbar" id="srch" placeholder="Product Search" required>
       <div class="input-group-btn">
         <button type="submit" class="btn btn-danger" id="srchbtn" >Search</button>
       </div>
@@ -445,20 +528,25 @@ $(document).ready(function(){
     <div class="container-fluid" id="product">
    
       <div id="image"  class="col-sm-3 ">
-          <img src="" class="img-responsive" style="width: 100%; height:;" id="productimg" >
+          <img src="" class="thumbnail img-responsive" style="width: 100%; height:;" id="productimg" >
       </div>     
 
-        <div  id="productinfo" class="col-sm-3 . well" > 
+        <div  id="productinfo" class="col-sm-3 . well" align="center"> 
            <font size="5"><b id="product_name"> </b><br><br> 
            <b id="product_price"> </b><br><br>
-           <b id="product_rating"></b><br><br>
+           <b id="product_rating"></b><br>
  
 
 
          <br><b>Links:</b><br><br></font>
            <a id="product_link1" href="" target="_blank"><img src="amazon_icon.jpg" height="50" width="50" ></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
            <a id="product_link2" href="" target="_blank"> <img src="flipkart_icon.jpg" height="50" width="50"></a>
-        </div>
+       <br><br>   
+          <font size="3"><b>Compare:</b></font><br>
+        <form action="comparepage.php" method="post">
+          <input type="submit" name="cmp1" class="btn btn-danger" value="" id="cmpbtn">
+        </form>
+                  </div>
 
         <div id="pie" >
            <div id="pie1" class="well" ></div>

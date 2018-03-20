@@ -9,16 +9,24 @@
 
             $conn = mysqli_connect("localhost", "root", "", "project");
 
-
+            //$compare2="Compare Page";
               if (isset($_POST['cmp1']))
               {
+              $compare1 = $_SESSION['compare'];
               $compare1 = $_POST['cmp1']; 
+              
               } 
-             
+          
+              
               if (isset($_POST['cmp2']))
               {
+              
               $compare2 = $_POST['cmp2']; 
+              //$compare1 = $_SESSION['compare'];
+             
               } 
+
+               $_SESSION['compare']=$compare1; 
 
             $sql1="select * from allproduct where productname='$compare1'";
             $sql2="select * from allproduct where productname='$compare2'";
@@ -27,13 +35,13 @@
 
             $result2=mysqli_query($conn,$sql2);
 
-            if ($result == TRUE) {
+    /*        if ($result == TRUE) {
             echo "success1  ";
             } 
             else {
             echo "Error: " . $sql . "<br>" . $conn->error;
             }
-
+*/
             $row=mysqli_fetch_assoc($result1);
             
             $name1= $row['productname']; 
@@ -75,13 +83,13 @@
             $result3=mysqli_query($conn2,$sql3);
 
             $result4=mysqli_query($conn2,$sql4);
-            if ($result == TRUE) {
+  /*          if ($result == TRUE) {
             echo "success 2";
             } 
             else {
             echo "Error: " . $sql2 . "<br>" . $conn2->error;
             }
-
+*/
             $row=mysqli_fetch_assoc($result3);
 
             $price_amz_1 = $row['price'];
@@ -146,7 +154,7 @@
             $result1=mysqli_query($conn2,$sql_f2_1);
 
             $result2=mysqli_query($conn2,$sql_f2_2);
-
+/*
 
             if ($result == TRUE) {
             echo "success f2";
@@ -156,7 +164,7 @@
             }
 
             $row=mysqli_fetch_assoc($result1);
-
+*/
             $price_flip_1 = $row['price'];
             $rating_flip_1 = $row['rating'];
             $link_flip_1 = $row['link'];
@@ -200,6 +208,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script src="jquery.easy-autocomplete.min.js"></script> 
+<link rel="stylesheet" href="easy-autocomplete.min.css"> 
    
 
   
@@ -301,7 +311,23 @@ $(document).ready(function(){
     var neg2= neg2_flip+neg2_amz;
     var mix2 = mix2_flip+mix2_amz;
 
+var options = {
+  url: "data.json",
 
+  getValue: "name",
+
+  theme:"purple",
+
+  list: {
+    match: {
+      enabled: true
+    }
+  }
+};
+
+$("#srch").easyAutocomplete(options)
+
+    
 
 
       var path1= name1.concat(".jpg");
@@ -312,15 +338,20 @@ $(document).ready(function(){
       document.getElementById('product2').setAttribute('src',path2);
 
       console.log(path1);
-console.log(path2);
+      console.log(path2);
+      
+      var price1_amz= "Rs ".concat(price1_amz); 
+      var price2_amz= "Rs ".concat(price2_amz); 
+
+
         document.getElementById('p1_amz').setAttribute('href',link1_amz);
         document.getElementById('p1_flip').setAttribute('href',link1_flip);
         document.getElementById('p2_amz').setAttribute('href',link2_amz);
         document.getElementById('p2_flip').setAttribute('href',link2_flip);
         document.getElementById('p1_price').innerHTML=price1_amz;
         document.getElementById('p2_price').innerHTML=price2_amz;
-
-
+        document.getElementById('input1').setAttribute('value',cmp1);
+        document.getElementById('input2').setAttribute('value',cmp2);
 
 
 
@@ -349,6 +380,7 @@ console.log(path2);
 
         chart.draw(data, options);
       }
+
 
          google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawbarchart);
@@ -492,24 +524,85 @@ height: 300px;
 
   height: 100px;
 }
-  </style>
+
+#productprice{
+  height: 100px;
+}
+
+#product1{
+  align-items: center;
+  height: 450px;
+}
+
+#product2{
+  align-items: center;
+  height: 450px;
+}
+
+.navbar {
+      margin-bottom: 0;
+      background-color: #f4511e;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #f4511e !important;
+      background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+  }
+ 
+
+ </style>
 
         
 
 
 </head>
 <body>
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color: black">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="homepage.php">our image</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="homepage.php">HOME</a></li>
+        <li><a href="resultpage.php">SEARCH</a></li>
+        <li><a href="comparepage.php">COMPARE</a></li>
+        <li><a href="#services">ADD PRODUCT</a></li>
+        
+
+      </ul>
+    </div>
+  </div>
+</nav>
 
 
 <div class="jumbotron text-center">
       <h1>Sentiment Analyzer</h1> 
       <p>We specialize in analysing sentiments</p> 
           <form class="form-inline" action="comparepage.php" method="post">
-                <input type="" name="cmp1" placeholder="Compare Product" size="50" class="form-control" size="50">
+                <input id="input1" type="" id="srch" name="cmp1" placeholder="" size="50" class="form-control" size="50">
                       &nbsp&nbsp&nbsp
-                <input type="" name="cmp2" placeholder="Compare Product" size="50" class="form-control">
+                <input id="input2" type="" id="srch" name="cmp2" placeholder="" size="50" class="form-control">
                   <br><br>
-                <input type="submit" name="" class="btn btn-danger" value="Compare">
+                <input  type="submit" name="" class="btn btn-danger" value="Compare">
 
           </form>
 
@@ -518,8 +611,8 @@ height: 300px;
 
               <div id="info" class="container" >
                  <div id="leftdiv">
-                    <div id="productprice"> <font size="5"><b>Price:<br><p id="p1_price"></p> </b></font></div>
-                    <div id = "imagespace" class="well ">
+                    <div id="productprice" align="center"> <font size="5"><b>Price:<br><p id="p1_price"></p> </b></font></div>
+                    <div id = "imagespace" class="well " align="center">
                     <img id="product1" src="" class="img-responsive" >
                     </div>
                     <div id="link" align="center">
@@ -538,9 +631,9 @@ height: 300px;
                  </div>
 
                  <div id ="rightdiv">
-                    <div id="productprice"> <font size="5"><b>Price:<br><p id="p2_price"></p> </b></font></div>
-                    <div class="well " id = "imagespace">
-                    <img id="product2" src="" class="img-responsive">
+                    <div id="productprice" align="center"> <font size="5"><b>Price:<br><p id="p2_price"></p> </b></font></div>
+                    <div class="well " id = "imagespace" align="center">
+                    <img id="product2" src="" class="img-responsive" >
                     </div>
                    <div id="link" align="center ">
                                           <font size="5"><b> Product Link:</b><br>
