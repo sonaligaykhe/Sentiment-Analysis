@@ -154,7 +154,7 @@
             $result1=mysqli_query($conn2,$sql_f2_1);
 
             $result2=mysqli_query($conn2,$sql_f2_2);
-/*
+
 
             if ($result == TRUE) {
             echo "success f2";
@@ -164,7 +164,7 @@
             }
 
             $row=mysqli_fetch_assoc($result1);
-*/
+
             $price_flip_1 = $row['price'];
             $rating_flip_1 = $row['rating'];
             $link_flip_1 = $row['link'];
@@ -208,7 +208,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-   <script src="jquery.easy-autocomplete.min.js"></script> 
+  <script src="jquery.easy-autocomplete.min.js"></script> 
+  
+
 <link rel="stylesheet" href="easy-autocomplete.min.css"> 
    
 
@@ -282,14 +284,24 @@ $(document).ready(function(){
            var price1_flip =   '<?php echo $price_flip_1 ?>';  
           var rating1_flip = ' <?php echo $rating_flip_1 ?>';  //= $row['rating'];
           var link1_flip=' <?php echo $link_flip_1 ?>';    //= $row['link'];
-          var pos1_flip=parseInt('<?php echo $pos_flip_1 ?>');   //= $row['pos'];
-          var neg1_flip= parseInt(' <?php echo $neg_flip_1 ?>');  //= $row['neg'];
-          var mix1_flip =parseInt ('<?php echo $mix_flip_1 ?>');  //= $row['mix'];
+        var pos1_flip=parseInt('<?php echo $pos_flip_1 ?>');   //= $row['pos'];
+          var neg1_flip= parseInt('<?php echo $neg_flip_1 ?>');  //= $row['neg'];
+          var mix1_flip = parseInt ('<?php echo $mix_flip_1 ?>');  //= $row['mix'];
          var feature_name_1_1_val_flip ='<?php echo $feature1val_flip_1 ?>';  //= $row[$feature1]; 
           var feature_name_1_2_val_flip ='<?php echo $feature2val_flip_1 ?>';  //= $row[$feature1]; 
          var feature_name_1_3_val_flip ='<?php echo $feature3val_flip_1 ?>';  //= $row[$feature1]; 
          var feature_name_1_4_val_flip ='<?php echo $feature4val_flip_1 ?>';  //= $row[$feature1]; 
          var feature_name_1_5_val_flip ='<?php echo $feature5val_flip_1 ?>';  //= $row[$feature1]; 
+
+
+console.log(pos1_flip);
+console.log(neg1_flip);
+console.log(mix1_flip);
+
+
+
+
+
                    
     var feature_name1_1_val =  feature_name_1_1_val_flip + feature_name1_1_val_amz ;                 
     var feature_name1_2_val =  feature_name_1_2_val_flip + feature_name1_2_val_amz ;
@@ -303,7 +315,7 @@ $(document).ready(function(){
     var feature_name2_4_val =  feature_name_2_4_val_flip +  feature_name2_4_val_amz ;
     var feature_name2_5_val =  feature_name_2_5_val_flip +  feature_name2_5_val_amz ;
 
-    var pos1=pos1_flip+pos1_amz;
+    var pos1= pos1_flip + pos1_amz;
     var neg1 = neg1_flip+neg1_amz;
     var mix1 = mix1_flip+mix1_amz;
 
@@ -311,21 +323,6 @@ $(document).ready(function(){
     var neg2= neg2_flip+neg2_amz;
     var mix2 = mix2_flip+mix2_amz;
 
-var options = {
-  url: "data.json",
-
-  getValue: "name",
-
-  theme:"purple",
-
-  list: {
-    match: {
-      enabled: true
-    }
-  }
-};
-
-$("#srch").easyAutocomplete(options)
 
     
 
@@ -350,11 +347,10 @@ $("#srch").easyAutocomplete(options)
         document.getElementById('p2_flip').setAttribute('href',link2_flip);
         document.getElementById('p1_price').innerHTML=price1_amz;
         document.getElementById('p2_price').innerHTML=price2_amz;
+         document.getElementById('p1_name').innerHTML=name1;
+        document.getElementById('p2_name').innerHTML=name2;
         document.getElementById('input1').setAttribute('value',cmp1);
         document.getElementById('input2').setAttribute('value',cmp2);
-
-
-
 
 
 
@@ -456,6 +452,29 @@ google.charts.setOnLoadCallback(drawChart2);
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
 
+
+var options = {
+  url: "data.json",
+
+  getValue: "name",
+
+  theme:"dark",
+
+  list: {
+    match: {
+      enabled: true
+    }
+  }
+};
+
+$('#input1').easyAutocomplete(options);
+
+$('#input2').easyAutocomplete(options);
+
+
+
+
+
 });//ready
   </script>
 
@@ -503,6 +522,7 @@ google.charts.setOnLoadCallback(drawChart2);
 #pie1
 {
 height: 300px;
+
 }
 
 #pie2
@@ -528,6 +548,11 @@ height: 300px;
 #productprice{
   height: 100px;
 }
+
+#productname{
+  height: 100px;
+}
+
 
 #product1{
   align-items: center;
@@ -562,10 +587,19 @@ height: 300px;
       color: #fff !important;
   }
  
+#input1{
+  margin-left: 115%;
+} 
 
- </style>
+#input2{
+  margin-left: 115%;
+} 
 
-        
+.ul.easyAutocomplete.li{
+ margin-left: 115%;
+}
+
+ </style>       
 
 
 </head>
@@ -598,9 +632,9 @@ height: 300px;
       <h1>Sentiment Analyzer</h1> 
       <p>We specialize in analysing sentiments</p> 
           <form class="form-inline" action="comparepage.php" method="post">
-                <input id="input1" type="" id="srch" name="cmp1" placeholder="" size="50" class="form-control" size="50">
+                <input id="input1" type=""  name="cmp1" placeholder="" size="50" class="form-control" size="50">
                       &nbsp&nbsp&nbsp
-                <input id="input2" type="" id="srch" name="cmp2" placeholder="" size="50" class="form-control">
+                <input id="input2" type="" name="cmp2" placeholder="" size="50" class="form-control">
                   <br><br>
                 <input  type="submit" name="" class="btn btn-danger" value="Compare">
 
@@ -611,6 +645,7 @@ height: 300px;
 
               <div id="info" class="container" >
                  <div id="leftdiv">
+                    <div id="productname" align="center"><font size="5"><b>Name: <br><p id="p1_name"></p> </b></font></div>
                     <div id="productprice" align="center"> <font size="5"><b>Price:<br><p id="p1_price"></p> </b></font></div>
                     <div id = "imagespace" class="well " align="center">
                     <img id="product1" src="" class="img-responsive" >
@@ -631,6 +666,7 @@ height: 300px;
                  </div>
 
                  <div id ="rightdiv">
+                    <div id="productname" align="center"><font size="5"><b>Name: <br><p id="p2_name"></p> </b></font></div>
                     <div id="productprice" align="center"> <font size="5"><b>Price:<br><p id="p2_price"></p> </b></font></div>
                     <div class="well " id = "imagespace" align="center">
                     <img id="product2" src="" class="img-responsive" >
