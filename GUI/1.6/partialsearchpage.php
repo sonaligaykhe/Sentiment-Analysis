@@ -211,14 +211,14 @@ height: 350px;
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="homepage.php">our image</a>
+   
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="homepage.php">HOME</a></li>
         <li><a href="resultpage.php">SEARCH</a></li>
         <li><a href="comparepage.php">COMPARE</a></li>
-        <li><a href="#services">ADD PRODUCT</a></li>
+        
         
 
       </ul>
@@ -239,6 +239,7 @@ height: 350px;
     </div>
   </form >
 </div> 
+<h2 align="center"><b>ALL RESULTS</b></h2>
 
 <div id="layout">
 	<form action="resultpage.php" id='myform' method="post">

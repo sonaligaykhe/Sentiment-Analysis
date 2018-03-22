@@ -127,7 +127,7 @@ var options = {
 
   getValue: "name",
 
-  theme:"purple",
+  theme:"dark",
 
   list: {
     match: {
@@ -278,14 +278,14 @@ ul li {list-style:none;}
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="homepage.php">our image</a>
+    
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="homepage.php">HOME</a></li>
         <li><a href="resultpage.php">SEARCH</a></li>
         <li><a href="comparepage.php">COMPARE</a></li>
-        <li><a href="#services">ADD PRODUCT</a></li>
+        
         
 
       </ul>

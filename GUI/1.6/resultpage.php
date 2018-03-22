@@ -28,8 +28,8 @@
             $conn = mysqli_connect("localhost", "root", "", "project");
 
  $inp= $_SESSION['aname'];
-echo "hi";
-echo $inp;
+//echo "hi";
+//echo $inp;
 // session_destroy();
               if (isset($_POST['searchbar']))
               {
@@ -140,8 +140,27 @@ echo $inp;
             echo $feature5val_flip;//= $row[$feature5]; 
 				 */  
 				   
-				   
-				   
+           $conn0 = mysqli_connect("localhost", "root", "", "project");
+//           $sql2 = "select * from '$tname' where name = '$inp'";
+
+            $sql_f1="select * from price_prediction where name='$inp'";//" and tablename like '%f' ";
+            $result=mysqli_query($conn_f1,$sql_f1);
+          
+            $row=mysqli_fetch_assoc($result);
+          
+				   $d1=$row['d1'];
+           $d2=$row['d2'];
+           $d3=$row['d3'];
+           $d4=$row['d4'];
+           $d5=$row['d5'];
+           $d6=$row['d6'];
+           $d7=$row['d7'];
+           $d8=$row['d8'];
+           $d9=$row['d9'];
+           $d10=$row['d10'];
+           $d11=$row['d11'];
+           $d12=$row['d12'];
+				  // echo $d1;
 				   
             mysqli_close($conn);
 
@@ -283,6 +302,38 @@ $("#srch").easyAutocomplete(options)
         });*/
       
      
+        var d1 = '<?php echo $d1 ?>';
+        var d2 = '<?php echo $d2 ?>';
+        var d3 = '<?php echo $d3 ?>';
+        var d4 = '<?php echo $d4 ?>';
+        var d5 = '<?php echo $d5 ?>';
+        var d6 = '<?php echo $d6 ?>';
+        var d7 = '<?php echo $d7 ?>';
+        var d8 = '<?php echo $d8 ?>';
+        var d9 = '<?php echo $d9 ?>';
+        var d10 = '<?php echo $d10 ?>';
+        var d11 = '<?php echo $d11 ?>';
+        var d12 = '<?php echo $d12 ?>';
+           
+
+        var date1 = d1.split(".");
+        var date2 = d2.split(".");
+        var date3 = d3.split(".");
+        var date4 = d4.split(".");
+        var date5 = d5.split(".");
+        var date6 = d6.split(".");
+        var date7 = d7.split(".");
+        var date8 = d8.split(".");
+        var date9 = d9.split(".");
+        var date10 = d10.split(".");
+        var date11 = d11.split(".");
+        var date12 = d12.split(".");
+
+
+
+
+
+
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart1);
 
@@ -386,6 +437,58 @@ $("#srch").easyAutocomplete(options)
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
 
+google.charts.load('current', {'packages':['line']});
+      google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('date', 'Month');
+      data.addColumn('number', 'Price');
+
+      data.addRows([
+        [new Date(parseInt(date1[1]), parseInt(date1[0])),  parseInt(date1[2]), ],
+        [new Date(parseInt(date2[1]), parseInt(date2[0])),  parseInt(date2[2]), ],
+        [new Date(parseInt(date3[1]), parseInt(date3[0])),  parseInt(date3[2]),  ],
+        [new Date(parseInt(date4[1]), parseInt(date4[0])),  parseInt(date4[2]), ],
+        [new Date(parseInt(date5[1]), parseInt(date5[0])),  parseInt(date5[2]), ],
+        [new Date(parseInt(date6[1]), parseInt(date6[0])),  parseInt(date6[2]), ],
+        [new Date(parseInt(date7[1]), parseInt(date7[0])),  parseInt(date7[2]), ],
+        [new Date(parseInt(date8[1]), parseInt(date8[0])),  parseInt(date8[2]), ],
+        [new Date(parseInt(date9[1]), parseInt(date9[0])),  parseInt(date9[2]), ],
+        [new Date(parseInt(date10[1]), parseInt(date10[0])),  parseInt(date10[2]), ],
+        [new Date(parseInt(date11[1]), parseInt(date11[0])),  parseInt(date11[2]),  ],
+        [new Date(parseInt(date12[1]), parseInt(date12[0])),  parseInt(date12[2]),  ]
+       
+      ]);
+
+      var options = {
+        chart: {
+          title: 'Price Prediction',
+          subtitle: ''
+        },
+
+
+        width: 900,
+        height: 250,
+      
+
+        axes: {
+          x: {
+            0: {side: 'top'}
+          }
+        }
+      };
+
+      var chart = new google.charts.Line(document.getElementById('linechart'));
+
+      chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+
+
+
+
+
 
 });//ready
   </script>
@@ -481,10 +584,21 @@ $("#srch").easyAutocomplete(options)
       color: #fff !important;
   }
  
+ #linechart{
+   
+  width: 100%;
+  height: 100px;
+  padding-right: 200px;
+  padding-left: 200px;
 
-  </style>      
+}
+#line
+{
+  padding-top: 20px;
+        
+}
 
-
+</style>
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top" style="background-color: black">
@@ -495,14 +609,14 @@ $("#srch").easyAutocomplete(options)
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="homepage.php">our image</a>
+     
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="homepage.php">HOME</a></li>
         <li><a href="resultpage.php">SEARCH</a></li>
         <li><a href="comparepage.php">COMPARE</a></li>
-        <li><a href="#services">ADD PRODUCT</a></li>
+       
         
 
       </ul>
@@ -514,9 +628,9 @@ $("#srch").easyAutocomplete(options)
 <div class="jumbotron text-center">
   <h1>Sentiment Analyzer</h1> 
   <h3> We Know And We Care...!!</h3>
-  <form class="form-inline" action="resultpage.php" method="post">
+  <form class="form-inline" action="partialsearchpage.php" method="post">
     <div class="input-group">
-      <input type="" class="form-control" size="50" name="rsearchbar" id="srch" placeholder="Product Search" required>
+      <input type="" class="form-control" size="50" name="searchbar" id="srch" placeholder="Product Search" required>
       <div class="input-group-btn">
         <button type="submit" class="btn btn-danger" id="srchbtn" >Search</button>
       </div>
@@ -554,10 +668,18 @@ $("#srch").easyAutocomplete(options)
            <div id="pie3" class="well"></div>
 
         </div>
-        
-        <div id="graph" class="col-sm-6 slideanim">
+        <div >
+        <div id="graph" class="col-sm-6 row" >
           
         </div>
+</div>
+      
+      <div class="row" class="" id="line">
+        
+                <div id="linechart" class="col-sm-6 " >
+        <h4>Price prediction:</h4>  
+        </div>
+      </div>
 
     </div>
     
@@ -565,8 +687,8 @@ $("#srch").easyAutocomplete(options)
   
 
 
-    <form action="resultpage2.php" method="post"> 
-    <div class="" id="review">
+<!--     <form action="resultpage2.php" method="post"> 
+    <div class="row" id="review">
       <h3 align="center"> Add Reviews:</h3>
       <div class="row" id="name">
         <div class="col-sm-6 form-group">
@@ -584,6 +706,6 @@ $("#srch").easyAutocomplete(options)
       </div>
     </div>
    </form> 
-
+ -->
 </body>
 </html>

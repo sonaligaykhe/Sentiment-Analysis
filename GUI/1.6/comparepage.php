@@ -639,14 +639,14 @@ height: 300px;
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="homepage.php">our image</a>
+   
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="homepage.php">HOME</a></li>
         <li><a href="resultpage.php">SEARCH</a></li>
         <li><a href="comparepage.php">COMPARE</a></li>
-        <li><a href="#services">ADD PRODUCT</a></li>
+        
         
 
       </ul>
@@ -657,7 +657,7 @@ height: 300px;
 
 <div class="jumbotron text-center">
       <h1>Sentiment Analyzer</h1> 
-      <p>We specialize in analysing sentiments</p> 
+      <h3> We Know And We Care...!!</h3>  
           <form class="form-inline" action="comparepage.php" method="post">
                 <input id="input1" type=""  name="cmp1" placeholder="" size="50" class="form-control" size="50">
                       &nbsp&nbsp&nbsp
