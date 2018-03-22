@@ -53,9 +53,9 @@ $("#srch").easyAutocomplete(options)
 
       
       google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart)
+google.charts.setOnLoadCallback(drawChart1)
      
-      function drawChart() {
+      function drawChart1() {
 
         // Create the data table.
         var data = new google.visualization.DataTable();
@@ -104,6 +104,63 @@ google.charts.setOnLoadCallback(drawChart)
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
+
+
+
+ google.charts.load('current', {'packages':['line']});
+      google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('date', 'Month');
+      data.addColumn('number', 'Price');
+
+      data.addRows([
+        [new Date(2017,6),  28500, ],
+        [new Date(2017,7),  28449, ],
+        [new Date(2017,8),  27549,  ],
+        [new Date(2017,9),  27000, ],
+        [new Date(2017,10),  28700, ],
+        [new Date(2017,11),  28747, ],
+        [new Date(2017,12),   28620, ],
+        [new Date(2017,13),  28640, ],
+        [new Date(2017,14),  28660, ],
+        [new Date(2017,15), 28680, ],
+        [new Date(2017,16),  28700,  ],
+        [new Date(2017,17),  28700,  ]
+       
+      ]);
+
+      var options = {
+        chart: {
+          title: 'Price Prediction',
+          subtitle: ''
+        },
+        width: 400,
+        height: 500,
+        axes: {
+          x: {
+            0: {side: 'top'}
+          }
+        }
+      };
+
+      var chart = new google.charts.Line(document.getElementById('linechart'));
+
+      chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -332,7 +389,7 @@ google.charts.setOnLoadCallback(drawChart)
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#senti">SENTIMENTS</a></li>
         <li><a href="#feature">FEATURED BASED</a></li>
-        <li><a href="#about">PRICE PREDICTION</a></li>
+        <li><a href="#Price">PRICE PREDICTION</a></li>
         <li><a href="#services">SEARCH PRODUCT</a></li>
         <li><a href="#contact">COMPARE PRODUCTS</a></li>
 
@@ -392,9 +449,10 @@ google.charts.setOnLoadCallback(drawChart)
        <th>   <div id="motopie"  style="width:400px ; height: 400px"></div>
        </th>
      </tr>
-   </table
-  </div>  
-</div>
+   </table>
+ </div>
+ </div>   
+
 
 <div id="feature" class="container-fluid text-center" >
     <h2>Featured Based Analysis</h2>
@@ -416,17 +474,23 @@ google.charts.setOnLoadCallback(drawChart)
 
 
 <!-- Container (About Section) -->
-<div id="about" class="container-fluid text-center>
-  <div class="row">
-    <div class="col-sm-8">
-      <h2>About Company Page</h2><br>
-      <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      
-    </div>
-    
-  </div>
-</div>
+<div id="Price" class="container-fluid text-center>
+   <h2>PRICE PREDICTION</h2>
+    <div class="col-sm-7 slideanim">
+   <table>
+     <tr align="center">
+       <th><img src="Dell Laptop.jpg"  width="400" class="img-responsive"></th>
+       
+       <th > 
+        <h1>Dell Laptop</h1>   
+        <h2>Price:Rs 28,747</h2>
+        <h3 >Rating: 3.5/5</h3></th>
+       <th>   <div id="linechart" style="width:400px ; height: 400px"></div>
+       </th>
+     </tr>
+   </table>
+  </div>  
+
 
 <!-- <div class="container-fluid bg-grey">
   <div class="row">

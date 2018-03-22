@@ -315,19 +315,19 @@ ul li {list-style:none;}
     <ul class="ix-list-items" style="">
       <!-- "ix-list-item" 는 "ix-list-items"의 직계 자식요소여야 한다. -->
       <li class="ix-list-item" id="1">
-        <img src="<?php echo $name[0].".jpg"; ?>" height="400px"> 
+        <img src="<?php echo $name[0].".jpg"; ?>" height="200px" widht="200px"> 
           <br><p><b> <?php echo $name[0]?> </b></p>
       </li>
       <li class="ix-list-item" id="2">
-        <img src="<?php echo $name[1].".jpg"; ?>" height="400px">
+        <img src="<?php echo $name[1].".jpg"; ?>" height="200px" widht="150px">
        <br><p><b> <?php echo $name[1]?> </b></p>
       </li>
       <li class="ix-list-item" id="3">
-        <img src="<?php echo $name[2].".jpg"; ?>" height="400px">
+        <img src="<?php echo $name[2].".jpg"; ?>" height="200px" widht="200px">
         <br><p><b> <?php echo $name[2]?> </b></p>
       </li>
       <li class="ix-list-item" id="4">
-        <img src="<?php echo $name[3].".jpg"; ?>" height="400px">
+        <img src="<?php echo $name[3].".jpg"; ?>" height="200px" widht="200px">
      <br><p><b> <?php echo $name[3]?> </b></p>
       </li>
     </ul>

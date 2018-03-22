@@ -119,7 +119,7 @@
             $feature4val_amz_2= $row[$feature4_2]; 
             $feature5val_amz_2= $row[$feature5_2]; 
             
-
+            echo $feature1val_amz_1;
 
             mysqli_close($conn);
             
@@ -171,11 +171,13 @@
             $pos_flip_1 = $row['pos'];
             $neg_flip_1 = $row['neg'];
             $mix_flip_1 = $row['mix'];
-            $feature1val_flip_1= $row[$feature1]; 
-            $feature2val_flip_1= $row[$feature2]; 
-            $feature3val_flip_1=$row[$feature3]; 
-            $feature4val_flip_1= $row[$feature4]; 
-            $feature5val_flip_1= $row[$feature5]; 
+            $feature1val_flip_1= $row[$feature1_1]; 
+            $feature2val_flip_1= $row[$feature2_1]; 
+            $feature3val_flip_1=$row[$feature3_1]; 
+            $feature4val_flip_1= $row[$feature4_1]; 
+            $feature5val_flip_1= $row[$feature5_1]; 
+
+             echo $feature1val_flip_1; 
 
  $row=mysqli_fetch_assoc($result2);
 
@@ -185,11 +187,11 @@
             $pos_flip_2 = $row['pos'];
             $neg_flip_2 = $row['neg'];
             $mix_flip_2 = $row['mix'];
-            $feature1val_flip_2= $row[$feature1]; 
-            $feature2val_flip_2= $row[$feature2]; 
-            $feature3val_flip_2= $row[$feature3]; 
-            $feature4val_flip_2= $row[$feature4]; 
-            $feature5val_flip_2= $row[$feature5]; 
+            $feature1val_flip_2= $row[$feature1_2]; 
+            $feature2val_flip_2= $row[$feature2_2]; 
+            $feature3val_flip_2= $row[$feature3_2]; 
+            $feature4val_flip_2= $row[$feature4_2]; 
+            $feature5val_flip_2= $row[$feature5_2]; 
 
 
         ?>
@@ -245,17 +247,26 @@ $(document).ready(function(){
             var feature_name2_4 = '<?php echo $feature4_2;?>';
             var feature_name2_5= '<?php echo $feature5_2;?>';
            
-            var feature_name1_1_val_amz= '<?php echo $feature1val_amz_1;?>';          
-            var feature_name1_2_val_amz= '<?php echo $feature2val_amz_1;?>';          
-            var feature_name1_3_val_amz= '<?php echo $feature3val_amz_1;?>';          
-            var feature_name1_4_val_amz= '<?php echo $feature4val_amz_1;?>';          
-            var feature_name1_5_val_amz= '<?php echo $feature5val_amz_1;?>';          
+            var feature_name1_1_val_amz= parseInt('<?php echo $feature1val_amz_1;?>');          
+            var feature_name1_2_val_amz= parseInt('<?php echo $feature2val_amz_1;?>');          
+            var feature_name1_3_val_amz= parseInt('<?php echo $feature3val_amz_1;?>');          
+            var feature_name1_4_val_amz= parseInt('<?php echo $feature4val_amz_1;?>');          
+            var feature_name1_5_val_amz= parseInt('<?php echo $feature5val_amz_1;?>');          
+          
+           console.log(feature_name1_1_val_amz);
+           console.log(feature_name1_2_val_amz);
+           console.log(feature_name1_3_val_amz);
+           console.log(feature_name1_4_val_amz);
+           console.log(feature_name1_5_val_amz);
+
+
+            var feature_name2_1_val_amz= parseInt('<?php echo $feature1val_amz_2;?>');          
+            var feature_name2_2_val_amz= parseInt('<?php echo $feature2val_amz_2;?>');          
+            var feature_name2_3_val_amz= parseInt('<?php echo $feature3val_amz_2;?>');          
+            var feature_name2_4_val_amz= parseInt('<?php echo $feature4val_amz_2;?>');          
+            var feature_name2_5_val_amz= parseInt('<?php echo $feature5val_amz_2;?>');          
+
            
-            var feature_name2_1_val_amz= '<?php echo $feature1val_amz_2;?>';          
-            var feature_name2_2_val_amz= '<?php echo $feature2val_amz_2;?>';          
-            var feature_name2_3_val_amz= '<?php echo $feature3val_amz_2;?>';          
-            var feature_name2_4_val_amz= '<?php echo $feature4val_amz_2;?>';          
-            var feature_name2_5_val_amz= '<?php echo $feature5val_amz_2;?>';          
 
             var link1_amz = '<?php echo $link_amz_1 ?>';
             var link2_amz = '<?php echo $link_amz_2 ?>';
@@ -275,11 +286,11 @@ $(document).ready(function(){
           var pos2_flip=parseInt('<?php echo $pos_flip_2 ?>');   //= $row['pos'];
           var neg2_flip= parseInt('<?php echo $neg_flip_2 ?>');  //= $row['neg'];
           var mix2_flip = parseInt ('<?php echo $mix_flip_2 ?>');  //= $row['mix'];
-         var feature_name_2_1_val_flip ='<?php echo $feature1val_flip_2 ?>';  //= $row[$feature1]; 
-          var feature_name_2_2_val_flip ='<?php echo $feature2val_flip_2 ?>';  //= $row[$feature1]; 
-         var feature_name_2_3_val_flip ='<?php echo $feature3val_flip_2 ?>';  //= $row[$feature1]; 
-         var feature_name_2_4_val_flip ='<?php echo $feature4val_flip_2 ?>';  //= $row[$feature1]; 
-         var feature_name_2_5_val_flip ='<?php echo $feature5val_flip_2 ?>';  //= $row[$feature1]; 
+         var feature_name_2_1_val_flip =parseInt('<?php echo $feature1val_flip_2 ?>');  //= $row[$feature1]; 
+          var feature_name_2_2_val_flip =parseInt('<?php echo $feature2val_flip_2 ?>');  //= $row[$feature1]; 
+         var feature_name_2_3_val_flip =parseInt('<?php echo $feature3val_flip_2 ?>');  //= $row[$feature1]; 
+         var feature_name_2_4_val_flip =parseInt('<?php echo $feature4val_flip_2 ?>');  //= $row[$feature1]; 
+         var feature_name_2_5_val_flip =parseInt('<?php echo $feature5val_flip_2 ?>');  //= $row[$feature1]; 
 
            var price1_flip =   '<?php echo $price_flip_1 ?>';  
           var rating1_flip = ' <?php echo $rating_flip_1 ?>';  //= $row['rating'];
@@ -287,33 +298,49 @@ $(document).ready(function(){
         var pos1_flip=parseInt('<?php echo $pos_flip_1 ?>');   //= $row['pos'];
           var neg1_flip= parseInt('<?php echo $neg_flip_1 ?>');  //= $row['neg'];
           var mix1_flip = parseInt ('<?php echo $mix_flip_1 ?>');  //= $row['mix'];
-         var feature_name_1_1_val_flip ='<?php echo $feature1val_flip_1 ?>';  //= $row[$feature1]; 
-          var feature_name_1_2_val_flip ='<?php echo $feature2val_flip_1 ?>';  //= $row[$feature1]; 
-         var feature_name_1_3_val_flip ='<?php echo $feature3val_flip_1 ?>';  //= $row[$feature1]; 
-         var feature_name_1_4_val_flip ='<?php echo $feature4val_flip_1 ?>';  //= $row[$feature1]; 
-         var feature_name_1_5_val_flip ='<?php echo $feature5val_flip_1 ?>';  //= $row[$feature1]; 
+         var feature_name_1_1_val_flip =parseInt('<?php echo $feature1val_flip_1 ?>');  //= $row[$feature1]; 
+          var feature_name_1_2_val_flip =parseInt('<?php echo $feature2val_flip_1 ?>');  //= $row[$feature1]; 
+         var feature_name_1_3_val_flip =parseInt('<?php echo $feature3val_flip_1 ?>');  //= $row[$feature1]; 
+         var feature_name_1_4_val_flip =parseInt('<?php echo $feature4val_flip_1 ?>');  //= $row[$feature1]; 
+         var feature_name_1_5_val_flip =parseInt('<?php echo $feature5val_flip_1 ?>');  //= $row[$feature1]; 
+
+             console.log(feature_name_1_1_val_flip);
+            console.log(feature_name_1_2_val_flip);  
+            console.log(feature_name_1_3_val_flip);
+            console.log(feature_name_1_4_val_flip);
+            console.log(feature_name_1_5_val_flip);
 
 
+/*
 console.log(pos1_flip);
 console.log(neg1_flip);
-console.log(mix1_flip);
+console.log(mix1_flip);*/
 
 
 
 
 
                    
-    var feature_name1_1_val =  feature_name_1_1_val_flip + feature_name1_1_val_amz ;                 
-    var feature_name1_2_val =  feature_name_1_2_val_flip + feature_name1_2_val_amz ;
-    var feature_name1_3_val =  feature_name_1_3_val_flip + feature_name1_3_val_amz ;
-    var feature_name1_4_val =  feature_name_1_4_val_flip + feature_name1_4_val_amz ;
-    var feature_name1_5_val =  feature_name_1_5_val_flip + feature_name1_5_val_amz ;
+    var feature_name1_1_val =  (feature_name_1_1_val_flip +feature_name1_1_val_amz)/2 ;                 
+    var feature_name1_2_val =  (feature_name_1_2_val_flip + feature_name1_2_val_amz)/2 ;
+    var feature_name1_3_val =  (feature_name_1_3_val_flip + feature_name1_3_val_amz)/2 ;
+    var feature_name1_4_val =  (feature_name_1_4_val_flip + feature_name1_4_val_amz )/2;
+    var feature_name1_5_val =  (feature_name_1_5_val_flip + feature_name1_5_val_amz )/2;
 
-     var feature_name2_1_val =  feature_name_2_1_val_flip + feature_name2_1_val_amz ;                 
-    var feature_name2_2_val =  feature_name_2_2_val_flip +  feature_name2_2_val_amz ;
-    var feature_name2_3_val =  feature_name_2_3_val_flip +  feature_name2_3_val_amz ;
-    var feature_name2_4_val =  feature_name_2_4_val_flip +  feature_name2_4_val_amz ;
-    var feature_name2_5_val =  feature_name_2_5_val_flip +  feature_name2_5_val_amz ;
+     var feature_name2_1_val =  (feature_name_2_1_val_flip + feature_name2_1_val_amz)/2 ;                 
+    var feature_name2_2_val =  (feature_name_2_2_val_flip +  feature_name2_2_val_amz )/2;
+    var feature_name2_3_val =  (feature_name_2_3_val_flip +  feature_name2_3_val_amz) /2;
+    var feature_name2_4_val =  (feature_name_2_4_val_flip +  feature_name2_4_val_amz)/2 ;
+    var feature_name2_5_val =  (feature_name_2_5_val_flip +  feature_name2_5_val_amz)/2 ;
+
+            console.log(feature_name1_1_val);
+            console.log(feature_name1_2_val);
+            console.log(feature_name1_3_val);
+            console.log(feature_name1_4_val);
+            console.log(feature_name1_5_val);
+            
+
+
 
     var pos1= pos1_flip + pos1_amz;
     var neg1 = neg1_flip+neg1_amz;
@@ -334,9 +361,9 @@ console.log(mix1_flip);
       var path2= name2.concat(".jpg");
       document.getElementById('product2').setAttribute('src',path2);
 
-      console.log(path1);
+/*      console.log(path1);
       console.log(path2);
-      
+*/      
       var price1_amz= "Rs ".concat(price1_amz); 
       var price2_amz= "Rs ".concat(price2_amz); 
 

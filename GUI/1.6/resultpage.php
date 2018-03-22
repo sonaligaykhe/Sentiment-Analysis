@@ -194,18 +194,18 @@ $(document).ready(function(){
         //var price = '<?php echo $price_amz ?>';
         //var rating_amz = '<?php echo $rating_amz ?>';
 
-         var feature_val_flip_1 = '<?php echo $feature1val_flip?>'; 
-          var feature_val_flip_2 = '<?php echo $feature2val_flip?>'; 
-         var feature_val_flip_3 = '<?php echo $feature3val_flip?>'; 
-         var feature_val_flip_4 = '<?php echo $feature4val_flip?>'; 
-         var feature_val_flip_5 = '<?php echo $feature5val_flip?>'; 
+         var feature_val_flip_1 = parseInt('<?php echo $feature1val_flip?>'); 
+          var feature_val_flip_2 = parseInt('<?php echo $feature2val_flip?>'); 
+         var feature_val_flip_3 = parseInt('<?php echo $feature3val_flip?>'); 
+         var feature_val_flip_4 = parseInt('<?php echo $feature4val_flip?>'); 
+         var feature_val_flip_5 = parseInt('<?php echo $feature5val_flip?>'); 
            
                 
-           var feature_val_amz_1 = '<?php echo $feature1val_amz ?>';
-           var feature_val_amz_2 = '<?php echo $feature2val_amz ?>';
-           var feature_val_amz_3 = '<?php echo $feature3val_amz ?>';
-           var feature_val_amz_4 = '<?php echo $feature4val_amz ?>';
-           var feature_val_amz_5 = '<?php echo $feature5val_amz ?>';
+           var feature_val_amz_1 = parseInt('<?php echo $feature1val_amz ?>');
+           var feature_val_amz_2 = parseInt('<?php echo $feature2val_amz ?>');
+           var feature_val_amz_3 = parseInt('<?php echo $feature3val_amz ?>');
+           var feature_val_amz_4 = parseInt('<?php echo $feature4val_amz ?>');
+           var feature_val_amz_5 = parseInt('<?php echo $feature5val_amz ?>');
             
            var feature_val_1_pos= (feature_val_flip_1+feature_val_amz_1)/2; 
            var feature_val_2_pos= (feature_val_flip_2+feature_val_amz_2)/2;
