@@ -13,7 +13,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-   
+   <script src="jquery.easy-autocomplete.min.js"></script> 
+<link rel="stylesheet" href="easy-autocomplete.min.css">  
 
   <?php   
              $dbhost = "localhost";
@@ -227,6 +228,8 @@ $(document).ready(function(){
         
 
          console.log(name);
+        document.getElementById('cmpbtn').setAttribute('value',name);
+
         var p_name = "Name: ".concat(name);
         document.getElementById("product_name").innerHTML=p_name;
 
@@ -351,6 +354,23 @@ $(document).ready(function(){
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
 
+      var options = {
+  url: "data.json",
+
+  getValue: "name",
+
+  theme:"dark",
+
+  list: {
+    match: {
+      enabled: true
+    }
+  }
+};
+
+$("#srch").easyAutocomplete(options)
+
+
 
 });//ready
   </script>
@@ -423,19 +443,65 @@ $(document).ready(function(){
   padding-left:10px; 
 }
 
+.navbar {
+      margin-bottom: 0;
+      background-color: #f4511e;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #f4511e !important;
+      background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+  }
+
+
   </style>      
 
 
 </head>
 <body>
 
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color: black">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="homepage.php">our image</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="homepage.php">HOME</a></li>
+        <li><a href="resultpage.php">SEARCH</a></li>
+        <li><a href="comparepage.php">COMPARE</a></li>
+        <li><a href="#services">ADD PRODUCT</a></li>
+        
+
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <div class="jumbotron text-center">
   <h1>Sentiment Analyzer</h1> 
   <h3> We Know And We Care...!!</h3>
   <form class="form-inline" action="resultpage.php" method="post">
     <div class="input-group">
-      <input type="" class="form-control" size="50" name="rsearchbar" placeholder="Product Search" required>
+      <input type="" class="form-control" id="srch" size="50" name="rsearchbar" placeholder="Product Search" required>
       <div class="input-group-btn">
         <button type="submit" class="btn btn-danger" id="srchbtn" >Search</button>
       </div>
@@ -447,10 +513,10 @@ $(document).ready(function(){
     <div class="container-fluid" id="product">
    
       <div id="image"  class="col-sm-3 ">
-          <img src="" class="img-responsive" style="width: 100%; height:;" id="productimg" >
+          <img src="" class="thumbnail img-responsive" style="width: 100%; height:;" id="productimg" >
       </div>     
 
-        <div  id="productinfo" class="col-sm-3 . well" > 
+        <div  id="productinfo" class="col-sm-3 . well" align="center" > 
            <font size="5"><b id="product_name"> </b><br><br> 
            <b id="product_price"> </b><br><br>
            <b id="product_rating"></b><br><br>
@@ -459,7 +525,12 @@ $(document).ready(function(){
 
          <br><b>Links:</b><br><br></font>
            <a id="product_link1" href="" target="_blank"><img src="amazon_icon.jpg" height="50" width="50" ></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-           <a id="product_link2" href="" target="_blank"> <img src="flipkart_icon.jpg" height="50" width="50"></a>
+           <a id="product_link2" href="" target="_blank"> <img src="flipkart_icon.jpg" height="50" width="50"></a><br>
+           <font size="3" > <b>Compare:</b></font><br>
+            <form action="comparepage.php" method="post">
+          <input type="submit" name="cmp1" class="btn btn-danger" value="" id="cmpbtn">
+        </form>
+
         </div>
 
         <div id="pie" >

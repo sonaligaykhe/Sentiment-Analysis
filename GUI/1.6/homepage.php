@@ -14,6 +14,10 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="jquery.easy-autocomplete.min.js"></script> 
+  
+
+<!-- CSS file -->
+<link rel="stylesheet" href="easy-autocomplete.min.css"> 
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  
@@ -31,12 +35,27 @@ $("#srchbtn").click(function(){
   window.open("resultpage.php","_self");
 });*/
 
+    var options = {
+  url: "data.json",
+
+  getValue: "name",
+
+  theme:"dark",
+
+  list: {
+    match: {
+      enabled: true
+    }
+  }
+};
+
+$("#srch").easyAutocomplete(options)
 
       
       google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart)
+google.charts.setOnLoadCallback(drawChart1)
      
-      function drawChart() {
+      function drawChart1() {
 
         // Create the data table.
         var data = new google.visualization.DataTable();
@@ -85,6 +104,74 @@ google.charts.setOnLoadCallback(drawChart)
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
+
+
+
+ google.charts.load('current', {'packages':['line']});
+      google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('date', 'Month');
+      data.addColumn('number', 'Price');
+
+      data.addRows([
+        [new Date(2017,6),  28500, ],
+        [new Date(2017,7),  28449, ],
+        [new Date(2017,8),  27549,  ],
+        [new Date(2017,9),  27000, ],
+        [new Date(2017,10),  28700, ],
+        [new Date(2017,11),  28747, ],
+        [new Date(2017,12),   28620, ],
+        [new Date(2017,13),  28640, ],
+        [new Date(2017,14),  28660, ],
+        [new Date(2017,15), 28680, ],
+        [new Date(2017,16),  28700,  ],
+        [new Date(2017,17),  28700,  ]
+       
+      ]);
+
+      var options = {
+        chart: {
+          title: 'Price Prediction',
+          subtitle: ''
+        },
+        width: 400,
+        height: 400,
+        axes: {
+          x: {
+            0: {side: 'top'}
+          }
+        }
+      };
+
+      var chart = new google.charts.Line(document.getElementById('linechart'));
+
+      chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+
+
+
+$('.clicker').click(function(){
+  var val=$(this).find('img:first').attr('src');
+  console.log(val);
+
+var productname = val.split(".");
+
+  if(val==='')
+    return
+  $('#btn1').val(productname[0])
+  $('#myform').submit()
+})
+
+
+
+
+
+
+
+
 
 
 
@@ -307,15 +394,15 @@ google.charts.setOnLoadCallback(drawChart)
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage">Logo</a>
+     
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#senti">SENTIMENTS</a></li>
         <li><a href="#feature">FEATURED BASED</a></li>
+        <li><a href="#Price">PRICE PREDICTION</a></li>
         <li><a href="#about">ABOUT</a></li>
-        <li><a href="#services">SERVICES</a></li>
-        <li><a href="#contact">CONTACT</a></li>
+     
 
       </ul>
     </div>
@@ -325,7 +412,7 @@ google.charts.setOnLoadCallback(drawChart)
 <div class="jumbotron text-center .row">
   <h1>Sentiment Analyzer</h1>  
   <h3> We Know And We Care...!!</h3> 
-   <form class="form-inline" action="resultpage.php" method="post">
+   <form class="form-inline" action="partialsearchpage.php" method="post">
     <div class="input-group">
     <input class="form-control" size="50" id="srch" placeholder="Search Product" name="searchbar">
       <div class="input-group-btn">
@@ -360,33 +447,35 @@ google.charts.setOnLoadCallback(drawChart)
 </div>
 
 </div>
-
+<form action="resultpage.php" method="post" id="myform">
+  <input type="hidden" name="searchbar" id="btn1">
 <div id="senti" class="container-fluid text-center" >
     <h2>Sentiment Analysis Basedon reviews</h2>
     <div class="col-sm-12 slideanim">
           <table>
      <tr>
-       <th><img src="Panasonic.jpg" width="400" height="280"></th>
+       <th class="clicker"><img src="Panasonic TV.jpg" width="400" height="280"></th>
        <th><h1 align="center">  Panasonic</h1> 
-        <h2 align="center">  Price:Rs 30,000</h2>
+        <h2 align="center">   Rs 30,000</h2>
         <h3 align="center">Rating: 4.1/5</h3></th>
        <th>   <div id="motopie"  style="width:400px ; height: 400px"></div>
        </th>
      </tr>
-   </table
-  </div>  
-</div>
+   </table>
+ </div>
+ </div>   
+
 
 <div id="feature" class="container-fluid text-center" >
     <h2>Featured Based Analysis</h2>
     <div class="col-sm-7 slideanim">
    <table>
      <tr>
-       <th><img src="Apple iPhone 7 Plus.jpg"  width="250" class="img-responsive"></th>
+       <th class="clicker"><img src="IPhone 7 Plus.jpg"  width="250" class="img-responsive"></th>
        
        <th > 
         <h1>Apple iPhone 7</h1>   
-        <h2>Price:Rs 65,995</h2>
+        <h2>Rs 65,995</h2>
         <h3 >Rating: 4.1/5</h3></th>
        <th>   <div id="motobar" style="width:400px ; height: 400px"></div>
        </th>
@@ -397,18 +486,26 @@ google.charts.setOnLoadCallback(drawChart)
 
 
 <!-- Container (About Section) -->
-<div id="about" class="container-fluid text-center>
-  <div class="row">
-    <div class="col-sm-8">
-      <h2>About Company Page</h2><br>
-      <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      
-    </div>
+<div id="Price" class="container-fluid text-center" >
+   <h2>PRICE PREDICTION</h2>
     
-  </div>
+    <div class="col-sm-7 slideanim" style="padding-left: 20px">
+   
+   <table align="center">
+     <tr align="center">
+       <th class="clicker"><img src="Dell Laptop.jpg"  width="400" class="img-responsive"></th>
+       
+       <th > 
+        <h1>Dell Laptop</h1>   
+        <h2>Rs 28,747</h2>
+        <h3 >Rating: 3.5/5</h3></th>
+       <th>   <div id="linechart" style="width:400px ; height: 400px"></div>
+       </th>
+     </tr>
+   </table>
+  </div>  
 </div>
-
+</form>
 <!-- <div class="container-fluid bg-grey">
   <div class="row">
     <div class="col-sm-4">
@@ -420,47 +517,17 @@ google.charts.setOnLoadCallback(drawChart)
 </div>
  -->
 <!-- Container (Services Section) -->
-<div id="services" class="container-fluid text-center">
-  <h2>SERVICES</h2>
-  <h4>What we offer</h4>
-  <br>
-  <div class="row slideanim">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-off logo-small"></span>
-      <h4>POWER</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-heart logo-small"></span>
-      <h4>LOVE</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-lock logo-small"></span>
-      <h4>JOB DONE</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
-    </div>
-  </div>
-  <br><br>
-  <div class="row slideanim">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-leaf logo-small"></span>
-      <h4>GREEN</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-certificate logo-small"></span>
-      <h4>CERTIFIED</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-wrench logo-small"></span>
-      <h4 style="color:#303030;">HARD WORK</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
-    </div>
-  </div>
+<div id="about" class="container-fluid text-center">
+  <h2>ABOUT</h2>
+    <div class="col-sm-12 slideanim" >
+  <p>
+    We are happy to tell you that our website will help to buy a new product on E-commerce websites. We will provide you the results in terms of pie-chart generated
+by doing sentiments analysis on reviews given by customers . We will also give you the feature based analysis which will help you to choose your product according to your 
+need of specification. We will also provide you the predicted price of products which will help you to decide when should you buy the product. And you can compare 2 products which will 
+give you the comaparative analysis of product which will help you to choose one product. You also have the link which will redirect you to the E-commerce website .  
+  </p>
 </div>
-
+</div>
 <!-- Container (Portfolio Section) -->
 <!-- <div id="portfolio" class="container-fluid text-center bg-grey">
   <h2>Portfolio</h2><br>
@@ -591,8 +658,8 @@ google.charts.setOnLoadCallback(drawChart)
   </div>
 </div>
   -->
-<!-- Container (Contact Section) -->
-<div id="contact" class="container-fluid bg-grey">
+<!--  Container (Contact Section) -->
+<!-- <div id="contact" class="container-fluid bg-grey">
   <h2 class="text-center">CONTACT</h2>
   <div class="row">
     <div class="col-sm-5">
@@ -618,7 +685,7 @@ google.charts.setOnLoadCallback(drawChart)
       </div>
     </div>
   </div>
-</div>
+</div> --> 
 
 <!-- Add Google Maps -->
 <!-- <div id="googleMap" style="height:400px;width:100%;"></div>

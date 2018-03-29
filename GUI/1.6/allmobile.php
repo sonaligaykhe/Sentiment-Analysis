@@ -27,6 +27,35 @@
                               $i++;
             }
 
+
+            $sql="select * from mobileinfo ORDER BY RAND() LIMIT 5";//where productname='$inp'";
+            $result=mysqli_query($link,$sql);
+
+$count=mysqli_num_rows($result);
+echo $count;
+   if ($result == TRUE) {
+            echo "success1  ";
+            } 
+            else{
+            echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+            $name = array();
+            $i=0;
+
+          while($row = mysqli_fetch_assoc($result)) {
+            echo "hi";
+              $name[$i]= $row['name'];
+              //$tname[$i]= $row['tablename'];
+              $i++;
+        }
+      $j=0;
+      while($j<$i){
+        echo $name[$j];
+      $j++;
+      }
+
+
+
   
 ?>
 
@@ -48,6 +77,8 @@
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://rawgit.com/blaxk/ixband/master/dist/ixBand_1.1.min.js'></script>
 <script src='http://rawgit.com/blaxk/ixsnack/master/bin/ixSnack_0.4.min.js'></script>
+ <script src="jquery.easy-autocomplete.min.js"></script> 
+<link rel="stylesheet" href="easy-autocomplete.min.css"> 
  
 
 </head>
@@ -58,7 +89,81 @@
 
 $( '.slide' ).ixSlideMax();
 
-  });
+
+$('#1').click(function(){
+
+  alert("1");
+<?php session_start(); $_SESSION['aname']="Vivo V7+";?>
+
+
+});
+
+
+$('#2').click(function(){
+alert("2");
+<?php session_start(); $_SESSION['aname']="Apple iPhone 7 Plus";?>
+
+
+});
+
+$('#3').click(function(){
+  alert("3");
+<?php session_start(); $_SESSION['aname']="Nokia 8";?>
+
+
+});
+
+$('#4').click(function(){
+alert("4");
+<?php session_start(); $_SESSION['aname']="OnePlus 5T";?>
+
+
+});
+
+
+
+var options = {
+  url: "data.json",
+
+  getValue: "name",
+
+  theme:"dark",
+
+  list: {
+    match: {
+      enabled: true
+    }
+  }
+};
+
+$("#srch").easyAutocomplete(options)
+
+    
+
+
+
+  
+$('.ix-list-item').click(function(){
+  var val=$(this).find('img:first').attr('src');
+  console.log(val);
+
+var productname = val.split(".");
+
+  if(val==='')
+    return
+  $('#btn1').val(productname[0])
+  $('#myform').submit()
+})
+
+
+
+
+});
+
+
+
+
+
 
 
 
@@ -80,7 +185,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   box-sizing:border-box;
   -webkit-text-size-adjust:none;
 }
-body {margin:50px 10px;}
+body {margin: 0px 0px;}
 ul li {list-style:none;}
 
 
@@ -133,18 +238,66 @@ ul li {list-style:none;}
   background-color: white;
 }
 
+.nav{
+  margin-top: 0px;
+}
 
+
+.navbar {
+      margin-bottom: 0;
+      background-color: #f4511e;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #f4511e !important;
+      background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+  }
+ 
 </style>
 
 
 <body>
+  <nav class="navbar navbar-default navbar-fixed-top" style="background-color: black">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+     
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="homepage.php">HOME</a></li>
+        <li><a href="resultpage.php">SEARCH</a></li>
+        <li><a href="comparepage.php">COMPARE</a></li>
+       
 
-  <div class="jumbotron text-center">
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <div class="jumbotron text-center" id="nav">
   <h1>Sentiment Analyzer</h1> 
   <h3> We Know And We Care...!!</h3>
-  <form class="form-inline" action="resultpage.php" method="post">
+  <form class="form-inline" action="partialsearchpage.php" method="post">
     <div class="input-group">
-      <input type="" class="form-control" size="50" name="rsearchbar" placeholder="Product Search" required>
+      <input type="" class="form-control" size="50" name="searchbar" id="srch" placeholder="Product Search" required>
       <div class="input-group-btn">
         <button type="submit" class="btn btn-danger" id="srchbtn" >Search</button>
       </div>
@@ -152,25 +305,29 @@ ul li {list-style:none;}
   </form >
 </div>
 
-
-
+<form action="resultpage.php" method="post" id="myform">
+<input type="hidden" name="searchbar" value="" id="btn1">
   <div class="slide" data-ix-options="view-length:3; move-length:2;">
   <!-- "ix-list-viewport" 는 직계 자식요소여야 한다. touch area -->
   <div class="ix-list-viewport" style="height: 500px">
     <!-- "ix-list-items" 는 "ix-list-viewport"의 직계 자식요소여야 한다. -->
     <ul class="ix-list-items" style="">
       <!-- "ix-list-item" 는 "ix-list-items"의 직계 자식요소여야 한다. -->
-      <li class="ix-list-item">
-        <a href="resultpage.php"><img src="Vivo V7+.jpg" height="450px" ><?php session_start(); $_SESSION['aname']="Vivo V7+";?></a>
+      <li class="ix-list-item" id="1">
+        <img src="<?php echo $name[0].".jpg"; ?>"   height="400px"> 
+          <br><p><b> <?php echo $name[0]?> </b></p>
       </li>
-      <li class="ix-list-item">
-        <a href="#"><img src="Apple iPhone 7 Plus.jpg" height="450px"></a>
+      <li class="ix-list-item" id="2">
+        <img src="<?php echo $name[1].".jpg"; ?>" height="400px">
+         <br><p><b> <?php echo $name[1]?> </b></p>
       </li>
-      <li class="ix-list-item">
-        <a href="#"><img src="Nokia 8.jpg" height="450px"></a>
+      <li class="ix-list-item" id="3">
+        <img src="<?php echo $name[2].".jpg"; ?>" height="400px">
+         <br><p><b> <?php echo $name[2]?> </b></p>
       </li>
-      <li class="ix-list-item">
-        <a href="#"><img src="OnePlus 5T.jpg" height="450px"></a>
+      <li class="ix-list-item" id="4">
+        <img src="<?php echo $name[3].".jpg"; ?>" height="400px">
+       <br><p><b> <?php echo $name[3]?> </b></p>
       </li>
     </ul>
   </div>
@@ -183,7 +340,6 @@ ul li {list-style:none;}
     </div>
   </div>
 </div>
-
-
+</form>
 </body>
 </html>
