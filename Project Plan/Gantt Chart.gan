@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Sentiment Analysis" company="" webLink="http://" view-date="2017-09-01" view-index="0" gantt-divider-location="224" resource-divider-location="300" version="2.8.6" locale="en_GB">
+<?xml version="1.0" encoding="UTF-8"?><project name="Sentiment Analysis" company="" webLink="http://" view-date="2017-11-01" view-index="0" gantt-divider-location="31" resource-divider-location="300" version="2.8.6" locale="en_GB">
     <description/>
-    <view zooming-state="default:9" id="gantt-chart">
-        <field id="tpd3" name="Name" width="112" order="0"/>
-        <field id="tpd4" name="Begin date" width="47" order="1"/>
-        <field id="tpd5" name="End date" width="46" order="2"/>
+    <view zooming-state="default:8" id="gantt-chart">
+        <field id="tpd3" name="Name" width="15" order="0"/>
+        <field id="tpd4" name="Begin date" width="15" order="1"/>
+        <field id="tpd5" name="End date" width="15" order="2"/>
+        <option id="color.recent"><![CDATA[#ff9999 #ffccff #33ff33 #00ffff #000099 #ffff00 #000000 #00cccc #ff0000 #006666]]></option>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="210" order="0"/>
@@ -33,38 +34,50 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="Literature survey" meeting="false" start="2017-06-28" duration="11" complete="0" expand="true">
+        <task id="0" name="Literature survey" color="#ff0000" meeting="false" start="2017-06-28" duration="11" complete="100" thirdDate="2017-06-28" thirdDate-constraint="0" expand="true">
             <depend id="1" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="1" name="Study of different Machine Algorithms" color="#8cb6ce" meeting="false" start="2017-07-09" duration="9" complete="0" thirdDate="2017-07-13" thirdDate-constraint="0" expand="true"/>
-        <task id="2" name="Study of different tools for Sentiment Analysis" meeting="false" start="2017-07-25" duration="13" complete="0" expand="true"/>
-        <task id="7" name="Design system  architecture" meeting="false" start="2017-09-18" duration="3" complete="0" expand="true"/>
-        <task id="9" name="Design UML diagrams" color="#8cb6ce" meeting="false" start="2017-09-21" duration="3" complete="0" thirdDate="2017-09-21" thirdDate-constraint="0" expand="true"/>
-        <task id="16" name="Data Extraction" color="#000000" meeting="false" start="2017-09-25" duration="46" complete="0" thirdDate="2017-09-25" thirdDate-constraint="0" expand="true">
-            <task id="17" name="Amazon Data Extraction" color="#8cb6ce" meeting="false" start="2017-09-25" duration="25" complete="0" thirdDate="2017-09-25" thirdDate-constraint="0" expand="true"/>
-            <task id="20" name="Flipkart Data Extraction" meeting="false" start="2017-10-30" duration="11" complete="0" expand="true"/>
+        <task id="1" name="Study of different Machine Algorithms" color="#ff0000" meeting="false" start="2017-07-09" duration="9" complete="100" thirdDate="2017-07-09" thirdDate-constraint="0" expand="true"/>
+        <task id="2" name="Study of different tools for Sentiment Analysis" color="#ff0000" meeting="false" start="2017-07-25" duration="27" complete="100" thirdDate="2017-07-25" thirdDate-constraint="0" expand="true"/>
+        <task id="7" name="Design system  architecture" color="#ff0000" meeting="false" start="2017-09-03" duration="18" complete="100" thirdDate="2017-09-03" thirdDate-constraint="0" expand="true"/>
+        <task id="9" name="Design UML diagrams" color="#000000" meeting="false" start="2017-09-21" duration="6" complete="100" thirdDate="2017-09-21" thirdDate-constraint="0" expand="true">
+            <task id="51" name="Class Diagram" color="#00cccc" meeting="false" start="2017-09-21" duration="2" complete="100" thirdDate="2017-09-21" thirdDate-constraint="0" expand="true"/>
+            <task id="52" name="Use case Diagram" color="#00cccc" meeting="false" start="2017-09-22" duration="2" complete="100" thirdDate="2017-09-22" thirdDate-constraint="0" expand="true"/>
+            <task id="53" name="State Diagram" color="#00cccc" meeting="false" start="2017-09-23" duration="2" complete="100" thirdDate="2017-09-23" thirdDate-constraint="0" expand="true"/>
+            <task id="54" name="Activity Diagram" color="#00cccc" meeting="false" start="2017-09-24" duration="2" complete="100" thirdDate="2017-09-24" thirdDate-constraint="0" expand="true"/>
+            <task id="55" name="Sequence Diagram" color="#00cccc" meeting="false" start="2017-09-25" duration="2" complete="100" thirdDate="2017-09-25" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="10" name="Implementation of Standard ML alogorithms" meeting="false" start="2017-11-14" duration="28" complete="0" expand="true"/>
-        <task id="12" name="Developed algorithm for Sentiment Analysis" meeting="false" start="2017-12-22" duration="42" complete="0" expand="true">
-            <task id="14" name="Developed basic Sentiment Analysis algorithm" meeting="false" start="2017-12-22" duration="13" complete="0" expand="true"/>
-            <task id="15" name="Negation Handling" meeting="false" start="2018-01-10" duration="5" complete="0" expand="true"/>
-            <task id="28" name="All Word Pickle Formation" meeting="false" start="2018-01-17" duration="3" complete="0" expand="true"/>
-            <task id="29" name="Autocorrection" meeting="false" start="2018-01-22" duration="6" complete="0" expand="true"/>
-            <task id="30" name="New Word Addition" meeting="false" start="2018-01-28" duration="5" complete="0" expand="true"/>
+        <task id="16" name="Data Extraction" color="#000000" meeting="false" start="2017-09-25" duration="46" complete="100" thirdDate="2017-09-25" thirdDate-constraint="0" expand="true">
+            <task id="17" name="Amazon Data Extraction" color="#ffff00" meeting="false" start="2017-09-25" duration="25" complete="100" thirdDate="2017-09-25" thirdDate-constraint="0" expand="true"/>
+            <task id="20" name="Flipkart Data Extraction" color="#ffff00" meeting="false" start="2017-10-20" duration="21" complete="100" thirdDate="2017-10-20" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="32" name="Design of GUI" meeting="false" start="2018-01-25" duration="54" complete="0" expand="true">
-            <task id="33" name="Study of different web development technologies" meeting="false" start="2018-01-25" duration="11" complete="0" expand="true"/>
-            <task id="34" name="Discussion on GUI Design" meeting="false" start="2018-02-05" duration="6" complete="0" expand="true"/>
-            <task id="36" name="Study of Google Charts" meeting="false" start="2018-02-11" duration="6" complete="0" expand="true"/>
-            <task id="37" name="Installation of XAMP" meeting="false" start="2018-02-17" duration="1" complete="0" expand="true"/>
-            <task id="39" name="Home Page" meeting="false" start="2018-02-18" duration="5" complete="0" expand="true"/>
-            <task id="42" name="Result Page" meeting="false" start="2018-02-23" duration="4" complete="0" expand="true"/>
-            <task id="43" name="Compare Page" meeting="false" start="2018-02-27" duration="5" complete="0" expand="true"/>
-            <task id="47" name="Product Suggestion" meeting="false" start="2018-03-04" duration="5" complete="0" expand="true"/>
-            <task id="48" name="Partial Searching" meeting="false" start="2018-03-09" duration="7" complete="0" expand="true"/>
-            <task id="49" name="All Product Page" meeting="false" start="2018-03-16" duration="4" complete="0" expand="true"/>
+        <task id="10" name="Implementation of Standard ML alogorithms" meeting="false" start="2017-11-11" duration="40" complete="100" expand="true">
+            <task id="56" name="NLP" color="#ffff00" meeting="false" start="2017-11-11" duration="20" complete="100" thirdDate="2017-11-11" thirdDate-constraint="0" expand="true"/>
+            <task id="57" name="SVR" color="#ffff00" meeting="false" start="2017-12-01" duration="20" complete="100" thirdDate="2017-12-01" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="45" name="Database" meeting="false" start="2018-02-17" duration="32" complete="0" expand="true"/>
+        <task id="12" name="Developed algorithm for Sentiment Analysis" meeting="false" start="2017-12-22" duration="42" complete="100" expand="true">
+            <task id="14" name="Developed basic Sentiment Analysis algorithm" color="#ffff00" meeting="false" start="2017-12-22" duration="13" complete="100" thirdDate="2017-12-22" thirdDate-constraint="0" expand="true">
+                <depend id="15" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="15" name="Negation Handling" color="#ffff00" meeting="false" start="2018-01-04" duration="5" complete="100" thirdDate="2018-01-04" thirdDate-constraint="0" expand="true"/>
+            <task id="28" name="All Word Pickle Formation" color="#ffff00" meeting="false" start="2018-01-17" duration="3" complete="100" thirdDate="2018-01-17" thirdDate-constraint="0" expand="true"/>
+            <task id="29" name="Autocorrection" color="#33ff33" meeting="false" start="2018-01-22" duration="6" complete="100" thirdDate="2018-01-22" thirdDate-constraint="0" expand="true"/>
+            <task id="30" name="New Word Addition" color="#33ff33" meeting="false" start="2018-01-28" duration="5" complete="100" thirdDate="2018-01-28" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="32" name="Design of GUI" meeting="false" start="2018-01-25" duration="56" complete="100" expand="true">
+            <task id="33" name="Study of different web development technologies" color="#33ff33" meeting="false" start="2018-01-25" duration="11" complete="100" thirdDate="2018-01-25" thirdDate-constraint="0" expand="true"/>
+            <task id="34" name="Discussion on GUI Design" color="#33ff33" meeting="false" start="2018-02-05" duration="6" complete="100" thirdDate="2018-02-05" thirdDate-constraint="0" expand="true"/>
+            <task id="36" name="Study of Google Charts" color="#33ff33" meeting="false" start="2018-02-11" duration="6" complete="100" thirdDate="2018-02-11" thirdDate-constraint="0" expand="true"/>
+            <task id="37" name="Installation of XAMP" color="#33ff33" meeting="false" start="2018-02-17" duration="1" complete="100" thirdDate="2018-02-17" thirdDate-constraint="0" expand="true"/>
+            <task id="39" name="Home Page" color="#33ff33" meeting="false" start="2018-02-18" duration="5" complete="100" thirdDate="2018-02-18" thirdDate-constraint="0" expand="true"/>
+            <task id="42" name="Result Page" color="#33ff33" meeting="false" start="2018-02-23" duration="4" complete="100" thirdDate="2018-02-23" thirdDate-constraint="0" expand="true"/>
+            <task id="43" name="Compare Page" color="#33ff33" meeting="false" start="2018-02-27" duration="5" complete="100" thirdDate="2018-02-27" thirdDate-constraint="0" expand="true"/>
+            <task id="47" name="Product Suggestion" color="#33ff33" meeting="false" start="2018-03-04" duration="5" complete="100" thirdDate="2018-03-04" thirdDate-constraint="0" expand="true"/>
+            <task id="48" name="Partial Searching" color="#33ff33" meeting="false" start="2018-03-09" duration="7" complete="100" thirdDate="2018-03-09" thirdDate-constraint="0" expand="true"/>
+            <task id="49" name="All Product Page" color="#33ff33" meeting="false" start="2018-03-16" duration="4" complete="100" thirdDate="2018-03-16" thirdDate-constraint="0" expand="true"/>
+            <task id="50" name="Horizontal Cursor" color="#33ff33" meeting="false" start="2018-03-20" duration="2" complete="100" thirdDate="2018-03-20" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="45" name="Database" color="#ff9999" meeting="false" start="2018-02-17" duration="32" complete="100" thirdDate="2018-02-17" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources/>
     <allocations/>
